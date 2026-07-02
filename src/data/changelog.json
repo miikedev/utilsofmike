@@ -1,0 +1,32 @@
+[
+  {
+    "date": "2026-07-02",
+    "title": "Development History Page",
+    "description": "Added a changelog page to track app changes, with data stored in a modifiable JSON file.",
+    "tags": ["feature"]
+  },
+  {
+    "date": "2026-06-28",
+    "title": "Navbar One-Line Layout",
+    "description": "Consolidated navigation items to fit on a single line by reducing font sizes and removing flex-wrap.",
+    "tags": ["enhancement"]
+  },
+  {
+    "date": "2026-06-25",
+    "title": "Dice Tool",
+    "description": "Added a dice rolling tool under Utils with support for multiple dice types.",
+    "tags": ["feature"]
+  },
+  {
+    "date": "2026-06-20",
+    "title": "Location Tool",
+    "description": "Added a location-based utility tool under Utils.",
+    "tags": ["feature"]
+  },
+  {
+    "date": "2026-06-15",
+    "title": "Initial Setup",
+    "description": "Set up the SolidJS project with routing, Tailwind CSS, and base pages (home, about, news, utils).",
+    "tags": ["setup"]
+  }
+]

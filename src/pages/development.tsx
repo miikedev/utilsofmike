@@ -38,8 +38,8 @@ const Development = () => {
 
   return (
     <div class="max-w-2xl mx-auto py-5">
-      <h1 class="text-3xl font-bold mb-2 text-amber-900">Development History</h1>
-      <p class="text-amber-700/70 mb-8">Auto-synced from git commits.</p>
+      <h1 class="text-3xl font-bold mb-2 text-amber-500">Development History</h1>
+      <p class="text-amber-500/70 mb-8">Auto-synced from git commits.</p>
 
       {!loaded() && <p class="text-amber-600/60 text-center py-12">Loading...</p>}
 

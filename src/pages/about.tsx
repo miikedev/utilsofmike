@@ -3,7 +3,7 @@ import AboutIllustration from "../components/about-illustration"
 const About = () => {
   return (
     <div class="flex flex-col items-center justify-center min-h-[calc(100vh-12rem)]">
-      <h1 class="text-3xl sm:text-4xl font-bold mb-6 text-amber-900">About</h1>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-6 text-amber-500">About</h1>
       <AboutIllustration />
       <div class="max-w-xl text-center text-stone-600 text-lg leading-relaxed space-y-4 mt-6">
         <p>

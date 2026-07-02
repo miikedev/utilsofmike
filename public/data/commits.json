@@ -1,5 +1,23 @@
 [
   {
+    "sha": "7071b0b",
+    "author": "mikedevv",
+    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
+    "date": "2026-07-02",
+    "title": "use light background in light mode, keep dark for dark mode",
+    "description": "",
+    "tag": "fix"
+  },
+  {
+    "sha": "bf7a0e1",
+    "author": "github-actions",
+    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
+    "date": "2026-07-02",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "f9e8dc4",
     "author": "mikedevv",
     "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",

@@ -9,7 +9,7 @@ const App: Component<{ children?: JSX.Element }> = (props) => {
       class="min-h-screen"
     >
       <Navbar />
-      <div class="pt-28 px-4 sm:px-8 max-w-6xl mx-auto text-stone-700">
+      <div class="pt-36 sm:pt-28 px-4 sm:px-8 max-w-6xl mx-auto text-stone-700">
         {props.children}
       </div>
     </div>

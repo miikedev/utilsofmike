@@ -1,14 +1,10 @@
 @import 'tailwindcss';
 
-html, body {
-  /* background-color: #fefdf6; */
-  background-color: #1111;
+:root {
+  color-scheme: light dark;
+}
 
-  /* background-image: url('../public//images/utils\'bg.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-blend-mode: luminosity;
-  background-color: #29252490; */
+html, body {
   margin: 0;
   padding: 0;
 }
@@ -19,5 +15,25 @@ body {
 
 #root {
   min-height: 100vh;
-  background-color: #000f;
+}
+
+@media (prefers-color-scheme: light) {
+  html, body {
+    background-color: #fefdf6;
+  }
+  #root {
+    background-color: #fefdf6;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html, body {
+    background-color: #1111;
+  }
+  body {
+    color: #e7e5e4;
+  }
+  #root {
+    background-color: #000f;
+  }
 }

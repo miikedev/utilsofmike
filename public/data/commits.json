@@ -1,5 +1,23 @@
 [
   {
+    "sha": "8f71f15",
+    "author": "mikedevv",
+    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
+    "date": "2026-07-02",
+    "title": "lighten header text in dark mode for readability",
+    "description": "",
+    "tag": "fix"
+  },
+  {
+    "sha": "dc17900",
+    "author": "github-actions",
+    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
+    "date": "2026-07-02",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "b5baee8",
     "author": "mikedevv",
     "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",

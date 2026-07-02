@@ -9,6 +9,7 @@ import Home from './pages/home';
 import Utils from './pages/utils';
 import Dice from './tools/dice/dice';
 import LocationTool from './tools/location-tool';
+import WeatherTool from './tools/weather';
 import UtilsWrapper from './components/utils-wrapper';
 import About from './pages/about';
 import News from './pages/news';
@@ -29,6 +30,7 @@ render(() => (
       <Route path="/" component={Utils} />
       <Route path="/dice" component={Dice} />
       <Route path="/location" component={LocationTool} />
+      <Route path="/weather" component={WeatherTool} />
     </Route>
     <Route path="/news" component={News} />
     <Route path="/development" component={Development} />

@@ -14,6 +14,9 @@ importers:
       '@thisbeyond/solid-select':
         specifier: ^0.16.0
         version: 0.16.0(solid-js@1.9.9)
+      openmeteo:
+        specifier: ^1.2.3
+        version: 1.2.3
       solid-js:
         specifier: ^1.9.9
         version: 1.9.9
@@ -307,6 +310,10 @@ packages:
 
   '@nothing-but/utils@0.17.0':
     resolution: {integrity: sha512-TuCHcHLOqDL0SnaAxACfuRHBNRgNJcNn9X0GiH5H3YSDBVquCr3qEIG3FOQAuMyZCbu9w8nk2CHhOsn7IvhIwQ==}
+
+  '@openmeteo/sdk@1.27.2':
+    resolution: {integrity: sha512-aCDyWjDqdT6kf73chJJ//kWlqwh8fZgMwtU9sO14ElRn++Yte/MuX6rnPPhFK+1KSP78vx/aGBlwh9o6Mrs1Jg==}
+    engines: {node: '>=12.0'}
 
   '@rollup/rollup-android-arm-eabi@4.52.5':
     resolution: {integrity: sha512-8c1vW4ocv3UOMp9K+gToY5zL2XiiVw3k7f1ksf4yO1FlDFQ1C2u72iACFnSOceJFsWskc2WZNqeRhFRPzv+wtQ==}
@@ -673,6 +680,9 @@ packages:
       picomatch:
         optional: true
 
+  flatbuffers@25.9.23:
+    resolution: {integrity: sha512-MI1qs7Lo4Syw0EOzUl0xjs2lsoeqFku44KpngfIduHBYvzm8h2+7K8YMQh1JtVVVrUvhLpNwqVi4DERegUJhPQ==}
+
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -806,6 +816,10 @@ packages:
 
   node-releases@2.0.20:
     resolution: {integrity: sha512-7gK6zSXEH6neM212JgfYFXe+GmZQM+fia5SsusuBIUgnPheLFBmIPhtFoAQRj8/7wASYQnbDlHPVwY0BefoFgA==}
+
+  openmeteo@1.2.3:
+    resolution: {integrity: sha512-3updmgCMnCAAjAgV3RfhMdIBPi/43RtbjQ4CizHGn52RP9SpgmVCDRpun+Ex75NG3jTF3pZp+d1BPlP9DWMHiQ==}
+    engines: {node: '>=12.0'}
 
   parse5@7.3.0:
     resolution: {integrity: sha512-IInvU7fabl34qmi9gY8XOVxhYyMyuH2xUNpb2q8/Y+7552KlejkRvqvD19nMoUW/uQGGbqNpA6Tufu5FL5BZgw==}
@@ -1186,6 +1200,10 @@ snapshots:
 
   '@nothing-but/utils@0.17.0': {}
 
+  '@openmeteo/sdk@1.27.2':
+    dependencies:
+      flatbuffers: 25.9.23
+
   '@rollup/rollup-android-arm-eabi@4.52.5':
     optional: true
 
@@ -1527,6 +1545,8 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.3
 
+  flatbuffers@25.9.23: {}
+
   fsevents@2.3.3:
     optional: true
 
@@ -1616,6 +1636,11 @@ snapshots:
   nanoid@3.3.11: {}
 
   node-releases@2.0.20: {}
+
+  openmeteo@1.2.3:
+    dependencies:
+      '@openmeteo/sdk': 1.27.2
+      flatbuffers: 25.9.23
 
   parse5@7.3.0:
     dependencies:

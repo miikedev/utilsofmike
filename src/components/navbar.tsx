@@ -23,7 +23,7 @@ const Navbar = () => {
                     <span class="ml-1 text-[10px] align-top text-amber-500 font-semibold">soon</span>
                 </li>
             ) : (
-                <A href={n.href} activeClass="underline decoration-amber-600 underline-offset-4">
+                <A href={n.href} end activeClass="underline decoration-amber-600 underline-offset-4">
                     <li class="font-medium hover:text-amber-700 text-xl sm:text-md md:text-lg whitespace-nowrap text-stone-700 transition-colors">
                         {n.label}
                     </li>

@@ -1,50 +1,31 @@
 @import 'tailwindcss';
 
 :root {
-  color-scheme: light dark;
+  color-scheme: dark;
 }
 
 html, body {
   margin: 0;
   padding: 0;
+  background-color: #1111;
 }
 
 body {
-  color: #292524;
+  color: #e7e5e4;
 }
 
 #root {
   min-height: 100vh;
+  background-color: #000f;
 }
 
-@media (prefers-color-scheme: light) {
-  html, body {
-    background-color: #fefdf6;
-  }
-  #root {
-    background-color: #fefdf6;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  html, body {
-    background-color: #1111;
-  }
-  body {
-    color: #e7e5e4;
-  }
-  #root {
-    background-color: #000f;
-  }
-
-  .text-amber-900 { color: #fde68a; }
-  .text-amber-800 { color: #fbbf24; }
-  .text-amber-700 { color: #fcd34d; }
-  .text-amber-700\/70 { color: #fcd34db3; }
-  .text-amber-700\/60 { color: #fcd34d99; }
-  .text-amber-700\/50 { color: #fcd34d80; }
-  .text-stone-800 { color: #e7e5e4; }
-  .text-stone-700 { color: #d6d3d1; }
-  .text-stone-600 { color: #a8a29e; }
-  .text-stone-500 { color: #78716c; }
-}
+.text-amber-900 { color: #fde68a; }
+.text-amber-800 { color: #fbbf24; }
+.text-amber-700 { color: #fcd34d; }
+.text-amber-700\/70 { color: #fcd34db3; }
+.text-amber-700\/60 { color: #fcd34d99; }
+.text-amber-700\/50 { color: #fcd34d80; }
+.text-stone-800 { color: #e7e5e4; }
+.text-stone-700 { color: #d6d3d1; }
+.text-stone-600 { color: #a8a29e; }
+.text-stone-500 { color: #78716c; }

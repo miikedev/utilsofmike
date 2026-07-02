@@ -1,5 +1,23 @@
 [
   {
+    "sha": "b5baee8",
+    "author": "mikedevv",
+    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
+    "date": "2026-07-02",
+    "title": "increase mobile top padding to clear wrapped navbar",
+    "description": "",
+    "tag": "fix"
+  },
+  {
+    "sha": "cb7c2ef",
+    "author": "github-actions",
+    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
+    "date": "2026-07-02",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "db534e8",
     "author": "mikedevv",
     "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",

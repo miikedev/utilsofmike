@@ -1,0 +1,24 @@
+# .github/workflows/sync-commits.yml
+name: Sync commits
+on:
+  schedule:
+    - cron: "0 * * * *"   # hourly
+  workflow_dispatch: {}
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch commits
+        run: |
+          curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/miikedev/utilsofmike/commits?per_page=50" \
+            > public/data/commits.json
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add public/data/commits.json
+          git diff --cached --quiet || git commit -m "chore: sync commits"
+          git push

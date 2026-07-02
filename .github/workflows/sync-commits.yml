@@ -1,0 +1,38 @@
+name: Sync commits
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch: {}
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch commits from GitHub API
+        run: |
+          curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/commits?per_page=50" \
+            | jq '[.[] | {
+              sha: .sha[:7],
+              author: .commit.author.name,
+              avatar: (.author.avatar_url // ""),
+              date: .commit.author.date[:10],
+              title: (.commit.message | split("\n")[0] | gsub("^(\\w+)(\\(.*?\\))?:\\s*"; "")),
+              description: (.commit.message | split("\n")[1:] | join("\n") | trim),
+              tag: (
+                if .commit.message | test("^(feat|feature)"; "i") then "feature"
+                elif .commit.message | test("^(fix|bug)"; "i") then "fix"
+                elif .commit.message | test("^(refactor|enhance)"; "i") then "enhancement"
+                elif .commit.message | test("^(chore|setup|init|config)"; "i") then "setup"
+                else "enhancement"
+                end
+              )
+            }]' > public/data/commits.json
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add public/data/commits.json
+          git diff --cached --quiet || git commit -m "chore: sync commits"
+          git push

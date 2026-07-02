@@ -1,4 +1,14 @@
-import changelog from "../data/changelog.json"
+import { createSignal } from "solid-js"
+
+type Commit = {
+  sha: string
+  author: string
+  avatar: string
+  date: string
+  title: string
+  description: string
+  tag: string
+}
 
 const tagColors: Record<string, string> = {
   feature: "bg-amber-100 text-amber-800",
@@ -8,28 +18,63 @@ const tagColors: Record<string, string> = {
 }
 
 const Development = () => {
+  const [commits, setCommits] = createSignal<Commit[]>([])
+  const [loaded, setLoaded] = createSignal(false)
+  const [error, setError] = createSignal(false)
+
+  fetch("/data/commits.json")
+    .then((r) => {
+      if (!r.ok) throw new Error()
+      return r.json()
+    })
+    .then((data) => {
+      setCommits(data)
+      setLoaded(true)
+    })
+    .catch(() => {
+      setError(true)
+      setLoaded(true)
+    })
+
   return (
     <div class="max-w-2xl mx-auto">
       <h1 class="text-3xl font-bold mb-2 text-amber-900">Development History</h1>
-      <p class="text-amber-700/70 mb-8">Changelog of changes and additions to the app.</p>
-      <div class="space-y-6">
-        {[...changelog].reverse().map((entry) => (
-          <div class="border border-amber-200 rounded-xl p-5 bg-white shadow-sm">
-            <div class="flex items-start justify-between gap-4 mb-1">
-              <h2 class="text-lg font-semibold text-stone-800">{entry.title}</h2>
-              <span class="text-sm text-amber-600/60 whitespace-nowrap">{entry.date}</span>
-            </div>
-            <p class="text-stone-600 text-sm mb-3">{entry.description}</p>
-            <div class="flex gap-2">
-              {entry.tags.map((tag) => (
-                <span class={`text-xs font-medium px-2.5 py-0.5 rounded-full ${tagColors[tag] || "bg-stone-100 text-stone-700"}`}>
-                  {tag}
+      <p class="text-amber-700/70 mb-8">Auto-synced from git commits.</p>
+
+      {!loaded() && <p class="text-amber-600/60 text-center py-12">Loading...</p>}
+
+      {error() && (
+        <p class="text-amber-600/60 text-center py-12">
+          No commit data yet. It will appear once the GitHub Actions sync runs.
+        </p>
+      )}
+
+      {loaded() && !error() && (
+        <div class="space-y-6">
+          {commits().map((c) => (
+            <div class="border border-amber-200 rounded-xl p-5 bg-white shadow-sm">
+              <div class="flex items-start justify-between gap-4 mb-1">
+                <h2 class="text-lg font-semibold text-stone-800">{c.title}</h2>
+                <span class="text-sm text-amber-600/60 whitespace-nowrap">{c.date}</span>
+              </div>
+              {c.description && (
+                <p class="text-stone-600 text-sm mb-3 whitespace-pre-wrap">{c.description}</p>
+              )}
+              <div class="flex items-center justify-between">
+                <span class={`text-xs font-medium px-2.5 py-0.5 rounded-full ${tagColors[c.tag] || "bg-stone-100 text-stone-700"}`}>
+                  {c.tag}
                 </span>
-              ))}
+                <div class="flex items-center gap-2">
+                  {c.avatar && (
+                    <img src={c.avatar} alt={c.author} class="w-5 h-5 rounded-full" />
+                  )}
+                  <span class="text-xs text-stone-500">{c.author}</span>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

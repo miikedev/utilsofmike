@@ -1,0 +1,20 @@
+[
+  {
+    "sha": "78ad50c",
+    "author": "Mike",
+    "avatar": "",
+    "date": "2026-07-02",
+    "title": "Merge remote and resolve README conflict",
+    "description": "",
+    "tag": "enhancement"
+  },
+  {
+    "sha": "214ffcf",
+    "author": "Mike",
+    "avatar": "",
+    "date": "2026-07-02",
+    "title": "Initial commit",
+    "description": "SolidJS app with brown theme, changelog, and tool utilities",
+    "tag": "setup"
+  }
+]

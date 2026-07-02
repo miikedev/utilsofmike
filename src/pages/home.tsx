@@ -1,14 +1,14 @@
 import { A } from "@solidjs/router"
 const sections = [
   { title: "Utils", description: "Handy tools like a dice roller and more.", href: "/utils", icon: "🛠️" },
-  { title: "Visualization", description: "See data and concepts come to life.", href: "/visualization", icon: "📊" },
+  { title: "Demographics", description: "See data and concepts come to life.", href: "/demographics ", icon: "📊" },
   { title: "Blogs", description: "Thoughts, notes, and write-ups.", href: "/blogs", icon: "✍️" },
-  { title: "About Us", description: "Learn more about this project.", href: "/about us", icon: "ℹ️" },
+  { title: "About Us", description: "Learn more about this project.", href: "/about", icon: "ℹ️" },
 ]
 
 const Home = () => {
   return (
-    <div class="flex flex-col items-center justify-center min-h-[calc(100vh-20rem)] py-5">
+    <div class="flex flex-col items-center justify-center min-h-[calc(100vh-20rem)] py-5 sm:pt-12">
       <h1 class="text-4xl sm:text-5xl font-bold mb-3 text-amber-900">Utils</h1>
       <p class="text-amber-700/70 text-lg sm:text-xl mb-4 text-center">A collection of tools and experiments</p>
       <div class="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-5 mb-10 max-w-2xl w-full text-center">

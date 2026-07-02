@@ -3,7 +3,7 @@ import {A, useLocation} from "@solidjs/router"
 type NavItem = { label: string; href: string; comingSoon?: boolean }
 
 const navs: NavItem[] = [
-    { label: "Home", href: "/home" },
+    { label: "Home", href: "/" },
     { label: "Demographics", href: "/demographics", comingSoon: true },
     { label: "Blogs", href: "/blogs", comingSoon: true },
     { label: "News", href: "/news", comingSoon: true },

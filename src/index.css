@@ -1,7 +1,14 @@
 @import 'tailwindcss';
 
 html, body {
-  background-color: #fefdf6;
+  /* background-color: #fefdf6; */
+  background-color: #1111;
+
+  /* background-image: url('../public//images/utils\'bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: luminosity;
+  background-color: #29252490; */
   margin: 0;
   padding: 0;
 }
@@ -12,5 +19,5 @@ body {
 
 #root {
   min-height: 100vh;
-  background-color: #fefdf6;
+  background-color: #000f;
 }

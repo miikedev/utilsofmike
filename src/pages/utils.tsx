@@ -7,7 +7,7 @@ const tools = [
 
 const Utils = () => {
   return (
-    <div class="flex flex-col items-center min-h-[calc(100vh-12rem)]">
+    <div class="flex flex-col items-center min-h-[calc(100vh-12rem)] pt-8">
       <h1 class="text-4xl sm:text-5xl font-bold mb-3 text-amber-900">Utils</h1>
       <p class="text-amber-700/70 text-lg sm:text-xl mb-12 text-center">A growing collection of handy tools</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-4xl">

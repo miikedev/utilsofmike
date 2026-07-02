@@ -37,7 +37,7 @@ const Development = () => {
     })
 
   return (
-    <div class="max-w-2xl mx-auto">
+    <div class="max-w-2xl mx-auto py-5">
       <h1 class="text-3xl font-bold mb-2 text-amber-900">Development History</h1>
       <p class="text-amber-700/70 mb-8">Auto-synced from git commits.</p>
 
@@ -54,8 +54,12 @@ const Development = () => {
           {commits().map((c) => (
             <div class="border border-amber-200 rounded-xl p-5 bg-white shadow-sm">
               <div class="flex items-start justify-between gap-4 mb-1">
-                <h2 class="text-lg font-semibold text-stone-800">{c.title}</h2>
-                <span class="text-sm text-amber-600/60 whitespace-nowrap">{c.date}</span>
+                <h2 class="text-lg font-semibold text-stone-800 break-words min-w-0 flex-1">
+                  {c.title}
+                </h2>
+                <span class="text-sm text-amber-600/60 whitespace-nowrap shrink-0">
+                  {c.date}
+                </span>
               </div>
               {c.description && (
                 <p class="text-stone-600 text-sm mb-3 whitespace-pre-wrap">{c.description}</p>

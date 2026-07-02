@@ -1,8 +1,8 @@
 [
   {
     "sha": "78ad50c",
-    "author": "Mike",
-    "avatar": "",
+    "author": "mikedevv",
+    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
     "date": "2026-07-02",
     "title": "Merge remote and resolve README conflict",
     "description": "",
@@ -10,11 +10,20 @@
   },
   {
     "sha": "214ffcf",
+    "author": "mikedevv",
+    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
+    "date": "2026-07-02",
+    "title": "Initial commit: SolidJS app with brown theme, changelog, and tool utilities",
+    "description": "",
+    "tag": "setup"
+  },
+  {
+    "sha": "33fe2ef",
     "author": "Mike",
-    "avatar": "",
+    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
     "date": "2026-07-02",
     "title": "Initial commit",
-    "description": "SolidJS app with brown theme, changelog, and tool utilities",
+    "description": "",
     "tag": "setup"
   }
 ]

@@ -19,7 +19,7 @@ jobs:
               avatar: (.author.avatar_url // ""),
               date: .commit.author.date[:10],
               title: (.commit.message | split("\n")[0] | gsub("^(\\w+)(\\(.*?\\))?:\\s*"; "")),
-              description: (.commit.message | split("\n")[1:] | join("\n") | trim),
+              description: (.commit.message | split("\n")[1:] | join("\n") | gsub("^\\s+|\\s+$"; "")),
               tag: (
                 if .commit.message | test("^(feat|feature)"; "i") then "feature"
                 elif .commit.message | test("^(fix|bug)"; "i") then "fix"

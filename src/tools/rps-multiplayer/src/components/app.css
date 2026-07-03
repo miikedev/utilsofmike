@@ -6,7 +6,7 @@
 :root {
   --paper: #f7f5ef;
   --paper-raised: #ffffff;
-  --ink: #dfdfdf;
+  --ink: #000;
   --ink-soft: #6f6b60;
   --line: #e4e0d5;
   --stamp: #c1443b;
@@ -133,6 +133,7 @@
   font-size: 15px;
   font-weight: 600;
   margin: 0;
+  color: var(--ink-soft);
 }
 .online-list__dot {
   width: 8px;
@@ -186,12 +187,12 @@
   font-weight: 700;
   font-size: 14px;
 }
-.online-list__name { font-size: 14px; font-weight: 600; }
+.online-list__name { font-size: 14px; font-weight: 700; color: #000; }
 .online-list__winrate { font-size: 12px; color: var(--ink-soft); }
 .online-list__challenge-btn {
-  border: 1px solid var(--ink);
+  border: 2px solid #000;
   background: transparent;
-  color: var(--ink);
+  color: #000;
   border-radius: 999px;
   padding: 6px 14px;
   font-size: 13px;
@@ -232,7 +233,7 @@
   font-weight: 600;
   cursor: pointer;
 }
-.challenge-toast__accept { background: var(--win); color: #fff; }
+.challenge-toast__accept { background: var(--win); color: #000; font-weight: 700; }
 .challenge-toast__decline { background: rgba(255,255,255,0.15); color: var(--paper); }
 
 /* ---------- Game room ---------- */
@@ -323,7 +324,8 @@
   font-size: 14px;
   cursor: pointer;
 }
-.game-room__leave:hover { background: var(--ink); color: var(--paper); }
+.game-room__leave:hover {   background: rgba(0, 0, 0, 0.75);
+  color: var(--paper); }
 
 /* ---------- Win rate badge ---------- */
 .winrate-badge {
@@ -333,7 +335,7 @@
   font-size: 12px;
   color: var(--ink-soft);
 }
-.winrate-badge__name { font-weight: 600; color: var(--ink); font-size: 13px; }
+.winrate-badge__name { font-weight: 700; color: #000; font-size: 13px; }
 .winrate-badge__stat { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--stamp); }
 .winrate-badge__stat small { color: var(--ink-soft); font-weight: 400; }
 .winrate-badge__record { font-size: 11px; }

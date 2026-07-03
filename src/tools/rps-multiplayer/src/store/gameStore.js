@@ -112,6 +112,8 @@ function createGameStore() {
             losses: profile.losses,
             draws: profile.draws,
           });
+        } else if (status === "CHANNEL_ERROR") {
+          console.error("[rps] Presence subscription failed");
         }
       });
 

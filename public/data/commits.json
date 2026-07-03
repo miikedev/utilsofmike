@@ -1,5 +1,14 @@
 [
   {
+    "sha": "2190cad",
+    "author": "github-actions",
+    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
+    "date": "2026-07-03",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "b3009cc",
     "author": "github-actions",
     "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
@@ -439,14 +448,5 @@
     "title": "correct workflow indentation for push trigger",
     "description": "",
     "tag": "fix"
-  },
-  {
-    "sha": "9fe9469",
-    "author": "mikedevv",
-    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
-    "date": "2026-07-02",
-    "title": "trigger sync-commits on push to main",
-    "description": "",
-    "tag": "enhancement"
   }
 ]

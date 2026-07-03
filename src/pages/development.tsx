@@ -11,7 +11,7 @@ type Commit = {
 }
 
 const tagColors: Record<string, string> = {
-  feature: "bg-amber-100 text-amber-800",
+  feature: "bg-stone-100 text-stone-800",
   enhancement: "bg-orange-100 text-orange-800",
   fix: "bg-red-100 text-red-800",
   setup: "bg-stone-200 text-stone-700",
@@ -38,13 +38,13 @@ const Development = () => {
 
   return (
     <div class="max-w-2xl mx-auto py-5">
-      <h1 class="text-3xl font-bold mb-2 text-amber-500">Development History</h1>
-      <p class="text-amber-500/70 mb-8">Auto-synced from git commits.</p>
+      <h1 class="text-3xl font-bold mb-2 text-stone-300">Development History</h1>
+      <p class="text-stone-400 mb-8">Auto-synced from git commits.</p>
 
-      {!loaded() && <p class="text-amber-600/60 text-center py-12">Loading...</p>}
+      {!loaded() && <p class="text-stone-500 text-center py-12">Loading...</p>}
 
       {error() && (
-        <p class="text-amber-600/60 text-center py-12">
+        <p class="text-stone-500 text-center py-12">
           No commit data yet. It will appear once the GitHub Actions sync runs.
         </p>
       )}
@@ -52,12 +52,12 @@ const Development = () => {
       {loaded() && !error() && (
         <div class="space-y-6">
           {commits().map((c) => (
-            <div class="border border-amber-200 rounded-xl p-5 bg-white shadow-sm">
+            <div class="border border-stone-200 rounded-xl p-5 bg-white shadow-sm">
               <div class="flex items-start justify-between gap-4 mb-1">
                 <h2 class="text-lg font-semibold text-stone-800 break-words min-w-0 flex-1">
                   {c.title}
                 </h2>
-                <span class="text-sm text-amber-600/60 whitespace-nowrap shrink-0">
+                <span class="text-sm text-stone-500 whitespace-nowrap shrink-0">
                   {c.date}
                 </span>
               </div>

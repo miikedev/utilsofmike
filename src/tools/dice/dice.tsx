@@ -74,7 +74,7 @@ export default function Dice() {
           <For each={FACES}>{(f) => <Face n={f.n} transform={f.transform} />}</For>
         </div>
       </div>
-      <button onClick={roll} class="px-8 py-3 bg-amber-700 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-amber-800 hover:shadow-lg active:scale-95 transition-all">Roll Dice</button>
+      <button onClick={roll} class="px-8 py-3 bg-stone-700 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-stone-800 hover:shadow-lg active:scale-95 transition-all">Roll Dice</button>
       {result() && <p>Rolled a {result()}</p>}
     </div>
   );

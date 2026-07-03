@@ -9,14 +9,14 @@ const sections = [
 const Home = () => {
   return (
     <div class="flex flex-col items-center justify-center min-h-[calc(100vh-20rem)] py-5 sm:pt-12">
-      <h1 class="text-4xl sm:text-5xl font-bold mb-3 text-amber-500">Utils</h1>
-      <p class="text-amber-500/70 text-lg sm:text-xl mb-4 text-center">A collection of tools and experiments</p>
-      <div class="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-5 mb-10 max-w-2xl w-full text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-3 text-stone-300">Utils</h1>
+      <p class="text-stone-400 text-lg sm:text-xl mb-4 text-center">A collection of tools and experiments</p>
+      <div class="bg-gradient-to-r from-stone-50 to-stone-100 border border-stone-200 rounded-xl p-5 mb-10 max-w-2xl w-full text-center">
         <p class="text-stone-900 text-sm sm:text-base">
           Welcome to an open-source web app! 🚀 Feel free to contribute, build free tools for community, and level up your <strong>TypeScript</strong> & <strong>SolidJS</strong> skills.
         </p>
       </div> 
-      <div class="bg-white border border-amber-200 rounded-xl p-6 mb-10 max-w-2xl w-full text-center">
+      <div class="bg-white border border-stone-200 rounded-xl p-6 mb-10 max-w-2xl w-full text-center">
         <h2 class="text-xl font-semibold text-stone-800 mb-2">Want to contribute?</h2>
         <p class="text-grey-500/70 text-sm mb-4">
           Whether it's fixing a bug, adding a new util, or improving docs — all skill levels welcome.

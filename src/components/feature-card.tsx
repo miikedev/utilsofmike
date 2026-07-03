@@ -12,11 +12,11 @@ export default function FeatureCard(props: Props) {
   return (
     <A
       href={props.href}
-      class="block rounded-xl border border-amber-200 bg-white p-6 shadow-sm transition hover:shadow-md hover:border-amber-300"
+      class="block rounded-xl border border-stone-200 bg-white p-6 shadow-sm transition hover:shadow-md hover:border-stone-300"
     >
       {props.icon && <div class="mb-3 text-3xl">{props.icon}</div>}
       <h2 class="text-xl font-semibold mb-1 text-stone-800 break-words">{props.title}</h2>
-      <p class="text-amber-700/70 text-sm">{props.description}</p>
+      <p class="text-stone-500 text-sm">{props.description}</p>
     </A>
   )
 }

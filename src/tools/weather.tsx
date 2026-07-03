@@ -170,7 +170,7 @@ export default function Weather() {
 
   return (
     <div class="flex flex-col items-center justify-center min-h-[calc(100vh-12rem)] py-4">
-      <div class="rounded-xl border border-amber-200 bg-white p-8 shadow-sm w-full max-w-lg">
+      <div class="rounded-xl border border-stone-200 bg-white p-8 shadow-sm w-full max-w-lg">
         <div class="text-4xl mb-4 text-center">
           <Show when={current()} fallback={"🌤"}>
             {(cur) => weatherInfo(cur().weatherCode).icon}
@@ -178,16 +178,16 @@ export default function Weather() {
         </div>
         <h2 class="text-xl font-semibold mb-1 text-center text-stone-800">Weather Forecast</h2>
         {locationName() && (
-          <p class="text-amber-700/60 text-sm text-center mb-4">{locationName()}</p>
+          <p class="text-stone-500 text-sm text-center mb-4">{locationName()}</p>
         )}
 
         {!current() && !error() && !loading() && (
-          <p class="text-amber-700/70 text-sm text-center mb-4">
+          <p class="text-stone-500 text-sm text-center mb-4">
             Click the button below to detect your location and get the weather forecast.
           </p>
         )}
 
-        {loading() && <p class="text-amber-700/70 text-sm text-center mb-4">Loading weather...</p>}
+        {loading() && <p class="text-stone-500 text-sm text-center mb-4">Loading weather...</p>}
 
         {error() && (
           <p class="text-red-500 text-sm text-center mb-4">{error()}</p>
@@ -199,47 +199,47 @@ export default function Weather() {
               <div class="flex items-center justify-between mb-3">
                 <div>
                   <p class="text-4xl font-bold text-stone-800">{Math.round(cur().temperature)}°C</p>
-                  <p class="text-amber-700/70 text-sm">
+                  <p class="text-stone-500 text-sm">
                     Feels like {Math.round(cur().apparentTemp)}°C
                   </p>
                 </div>
                 <div class="text-right text-sm text-stone-600">
                   <p>{weatherInfo(cur().weatherCode).description}</p>
-                  <p class="text-amber-700/60">{cur().time.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" })}</p>
+                  <p class="text-stone-500">{cur().time.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" })}</p>
                 </div>
               </div>
 
-              <div class="grid grid-cols-3 gap-3 text-sm text-stone-600 border-t border-amber-100 pt-3">
+              <div class="grid grid-cols-3 gap-3 text-sm text-stone-600 border-t border-stone-100 pt-3">
                 <div class="text-center">
                   <p class="font-semibold">{Math.round(cur().humidity)}%</p>
-                  <p class="text-amber-700/60 text-xs">Humidity</p>
+                  <p class="text-stone-500 text-xs">Humidity</p>
                 </div>
                 <div class="text-center">
                   <p class="font-semibold">{Math.round(cur().windSpeed)} km/h</p>
-                  <p class="text-amber-700/60 text-xs">{windDirection(cur().windDirection)}</p>
+                  <p class="text-stone-500 text-xs">{windDirection(cur().windDirection)}</p>
                 </div>
                 <div class="text-center">
                   <p class="font-semibold">{Math.round(cur().pressure)} hPa</p>
-                  <p class="text-amber-700/60 text-xs">Pressure</p>
+                  <p class="text-stone-500 text-xs">Pressure</p>
                 </div>
               </div>
 
-              <div class="grid grid-cols-4 gap-2 text-xs text-stone-500 border-t border-amber-100 pt-3 mt-3">
+              <div class="grid grid-cols-4 gap-2 text-xs text-stone-500 border-t border-stone-100 pt-3 mt-3">
                 <div class="text-center">
                   <p class="font-semibold">{Math.round(cur().windGusts)} km/h</p>
-                  <p class="text-amber-700/50">Gusts</p>
+                  <p class="text-stone-400">Gusts</p>
                 </div>
                 <div class="text-center">
                   <p class="font-semibold">{cur().cloudCover}%</p>
-                  <p class="text-amber-700/50">Clouds</p>
+                  <p class="text-stone-400">Clouds</p>
                 </div>
                 <div class="text-center">
                   <p class="font-semibold">{cur().precipitation.toFixed(2)}"</p>
-                  <p class="text-amber-700/50">Precip</p>
+                  <p class="text-stone-400">Precip</p>
                 </div>
                 <div class="text-center">
                   <p class="font-semibold">{cur().rain.toFixed(2)}"</p>
-                  <p class="text-amber-700/50">Rain</p>
+                  <p class="text-stone-400">Rain</p>
                 </div>
               </div>
             </div>
@@ -247,23 +247,23 @@ export default function Weather() {
         </Show>
 
         <Show when={daily().length > 0}>
-          <div class="border-t border-amber-100 pt-4">
+          <div class="border-t border-stone-100 pt-4">
             <h3 class="text-sm font-semibold text-stone-600 mb-3">7-Day Forecast</h3>
             <div class="space-y-1">
               <For each={daily()}>
                 {(day) => {
                   const info = weatherInfo(day.weatherCode)
                   return (
-                    <div class="flex items-center justify-between text-sm py-1.5 border-b border-amber-50 last:border-0">
+                    <div class="flex items-center justify-between text-sm py-1.5 border-b border-stone-100 last:border-0">
                       <span class="text-stone-600 w-14">{day.date.split(",")[0]}</span>
                       <span class="text-lg" title={info.description}>{info.icon}</span>
                       <span class="text-stone-600 w-16 text-center text-xs hidden sm:block">{info.description}</span>
                       <span class="text-stone-600 w-16 text-right text-xs">
                         <span class="font-semibold">{Math.round(day.windMean)}</span>
-                        <span class="text-amber-700/50">/</span>
+                        <span class="text-stone-400">/</span>
                         <span>{Math.round(day.windMax)} km/h</span>
                       </span>
-                      <span class="text-amber-700/50 text-xs w-12 text-right">
+                      <span class="text-stone-400 text-xs w-12 text-right">
                         {day.rain > 0 ? `${day.rain.toFixed(2)}"` : "—"}
                       </span>
                     </div>
@@ -278,7 +278,7 @@ export default function Weather() {
           <button
             onClick={getLocationAndWeather}
             disabled={loading()}
-            class="flex-1 px-6 py-3 bg-amber-700 text-white font-semibold rounded-lg shadow-md hover:bg-amber-800 active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            class="flex-1 px-6 py-3 bg-stone-700 text-white font-semibold rounded-lg shadow-md hover:bg-stone-800 active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading() ? "Loading..." : "Use My Location"}
           </button>

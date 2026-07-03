@@ -1,5 +1,23 @@
 [
   {
+    "sha": "a39df1e",
+    "author": "mikedevv",
+    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
+    "date": "2026-07-03",
+    "title": "improve RPS multiplayer UI contrast and fix Realtime WebSocket connection",
+    "description": "",
+    "tag": "fix"
+  },
+  {
+    "sha": "09d3491",
+    "author": "github-actions",
+    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
+    "date": "2026-07-03",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "40af6de",
     "author": "github-actions",
     "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
@@ -430,23 +448,5 @@
     "title": "Merge remote and resolve README conflict",
     "description": "",
     "tag": "enhancement"
-  },
-  {
-    "sha": "214ffcf",
-    "author": "mikedevv",
-    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
-    "date": "2026-07-02",
-    "title": "Initial commit: SolidJS app with brown theme, changelog, and tool utilities",
-    "description": "",
-    "tag": "setup"
-  },
-  {
-    "sha": "33fe2ef",
-    "author": "Mike",
-    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
-    "date": "2026-07-02",
-    "title": "Initial commit",
-    "description": "",
-    "tag": "setup"
   }
 ]

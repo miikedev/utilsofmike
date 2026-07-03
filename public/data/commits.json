@@ -1,5 +1,23 @@
 [
   {
+    "sha": "702d936",
+    "author": "mikedevv",
+    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
+    "date": "2026-07-03",
+    "title": "switch from amber to stone/grey color palette across the app",
+    "description": "",
+    "tag": "enhancement"
+  },
+  {
+    "sha": "ec600a2",
+    "author": "github-actions",
+    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
+    "date": "2026-07-03",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "584368a",
     "author": "github-actions",
     "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",

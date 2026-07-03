@@ -1,5 +1,14 @@
 [
   {
+    "sha": "b3009cc",
+    "author": "github-actions",
+    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
+    "date": "2026-07-03",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "c444357",
     "author": "mikedevv",
     "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
@@ -439,14 +448,5 @@
     "title": "trigger sync-commits on push to main",
     "description": "",
     "tag": "enhancement"
-  },
-  {
-    "sha": "07e31bc",
-    "author": "github-actions",
-    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
-    "date": "2026-07-02",
-    "title": "sync commits",
-    "description": "",
-    "tag": "setup"
   }
 ]

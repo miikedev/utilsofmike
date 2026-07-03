@@ -318,13 +318,14 @@
 
 .game-room__leave {
   border: 1px solid var(--ink);
-  background: transparent;
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--ink);
   border-radius: 999px;
   padding: 8px 20px;
   font-size: 14px;
   cursor: pointer;
 }
-.game-room__leave:hover {   background: rgba(0, 0, 0, 0.75);
+.game-room__leave:hover { background: var(--ink); color: var(--paper); 
   color: var(--paper); }
 
 /* ---------- Win rate badge ---------- */

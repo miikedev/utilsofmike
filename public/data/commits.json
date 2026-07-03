@@ -1,5 +1,14 @@
 [
   {
+    "sha": "cf99694",
+    "author": "github-actions",
+    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
+    "date": "2026-07-03",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "7f03644",
     "author": "github-actions",
     "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
@@ -439,14 +448,5 @@
     "title": "Merge branch 'main' of https://github.com/miikedev/utilsofmike",
     "description": "",
     "tag": "enhancement"
-  },
-  {
-    "sha": "a391e64",
-    "author": "mikedevv",
-    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
-    "date": "2026-07-02",
-    "title": "match background across html, body, and root",
-    "description": "",
-    "tag": "fix"
   }
 ]

@@ -1,5 +1,23 @@
 [
   {
+    "sha": "3f5f943",
+    "author": "mikedevv",
+    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
+    "date": "2026-07-03",
+    "title": "lighter back-to-lobby button with dark text",
+    "description": "",
+    "tag": "enhancement"
+  },
+  {
+    "sha": "c30f68d",
+    "author": "github-actions",
+    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
+    "date": "2026-07-03",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "a39df1e",
     "author": "mikedevv",
     "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
@@ -430,23 +448,5 @@
     "title": "remove duplicate workflow file",
     "description": "",
     "tag": "setup"
-  },
-  {
-    "sha": "c2516fa",
-    "author": "mikedevv",
-    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
-    "date": "2026-07-02",
-    "title": "auto-sync commits via GitHub Actions, remove manual changelog",
-    "description": "",
-    "tag": "setup"
-  },
-  {
-    "sha": "78ad50c",
-    "author": "mikedevv",
-    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
-    "date": "2026-07-02",
-    "title": "Merge remote and resolve README conflict",
-    "description": "",
-    "tag": "enhancement"
   }
 ]

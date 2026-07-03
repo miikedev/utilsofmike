@@ -12,6 +12,7 @@ import LocationTool from './tools/location-tool';
 import WeatherTool from './tools/weather';
 import UtilsWrapper from './components/utils-wrapper';
 import About from './pages/about';
+import Rps from './pages/rps';
 import News from './pages/news';
 import Development from './pages/development';
 
@@ -28,6 +29,7 @@ render(() => (
     <Route path="/" component={Home} />
     <Route path="/utils" component={UtilsWrapper}>
       <Route path="/" component={Utils} />
+      <Route path="/rps" component={Rps} />
       <Route path="/dice" component={Dice} />
       <Route path="/location" component={LocationTool} />
       <Route path="/weather" component={WeatherTool} />

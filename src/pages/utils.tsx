@@ -4,6 +4,7 @@ const tools = [
   { title: "Dice Roller", description: "Roll a virtual 3D dice with realistic animation.", href: "/utils/dice", icon: "🎲" },
   { title: "Location", description: "Detect your current geographic location.", href: "/utils/location", icon: "📍" },
   { title: "Weather", description: "7-day weather forecast powered by Open-Meteo.", href: "/utils/weather", icon: "🌤" },
+  { title: "RPS Multiplayer", description: "Rock Paper Scissors — play against others in real-time.", href: "/utils/rps", icon: "✊" },
 ]
 
 const Utils = () => {

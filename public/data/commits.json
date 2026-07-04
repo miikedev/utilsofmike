@@ -1,5 +1,14 @@
 [
   {
+    "sha": "9f8e3ca",
+    "author": "github-actions",
+    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
+    "date": "2026-07-04",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "6c142ee",
     "author": "github-actions",
     "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
@@ -439,14 +448,5 @@
     "title": "lighten header text in dark mode for readability",
     "description": "",
     "tag": "fix"
-  },
-  {
-    "sha": "dc17900",
-    "author": "github-actions",
-    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
-    "date": "2026-07-02",
-    "title": "sync commits",
-    "description": "",
-    "tag": "setup"
   }
 ]

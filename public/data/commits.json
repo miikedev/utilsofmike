@@ -1,5 +1,14 @@
 [
   {
+    "sha": "368f631",
+    "author": "github-actions",
+    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
+    "date": "2026-07-03",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "b3cce46",
     "author": "github-actions",
     "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
@@ -439,14 +448,5 @@
     "title": "fix navbar mobile overflow, card text overflow, and layout spacing",
     "description": "",
     "tag": "enhancement"
-  },
-  {
-    "sha": "e6ecfb2",
-    "author": "github-actions",
-    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
-    "date": "2026-07-02",
-    "title": "sync commits",
-    "description": "",
-    "tag": "setup"
   }
 ]

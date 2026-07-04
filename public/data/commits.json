@@ -1,5 +1,14 @@
 [
   {
+    "sha": "3b8ca5e",
+    "author": "github-actions",
+    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
+    "date": "2026-07-04",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "2f48205",
     "author": "github-actions",
     "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
@@ -439,14 +448,5 @@
     "title": "sync commits",
     "description": "",
     "tag": "setup"
-  },
-  {
-    "sha": "db534e8",
-    "author": "mikedevv",
-    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
-    "date": "2026-07-02",
-    "title": "add vercel.json rewrites for SPA routing",
-    "description": "",
-    "tag": "fix"
   }
 ]

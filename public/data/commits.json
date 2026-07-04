@@ -1,5 +1,14 @@
 [
   {
+    "sha": "cde5421",
+    "author": "github-actions",
+    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
+    "date": "2026-07-04",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "3b8ca5e",
     "author": "github-actions",
     "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
@@ -439,14 +448,5 @@
     "title": "increase mobile top padding to clear wrapped navbar",
     "description": "",
     "tag": "fix"
-  },
-  {
-    "sha": "cb7c2ef",
-    "author": "github-actions",
-    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
-    "date": "2026-07-02",
-    "title": "sync commits",
-    "description": "",
-    "tag": "setup"
   }
 ]

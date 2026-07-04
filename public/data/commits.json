@@ -1,5 +1,14 @@
 [
   {
+    "sha": "cbe4e8e",
+    "author": "github-actions",
+    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
+    "date": "2026-07-04",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "4e0a8d8",
     "author": "github-actions",
     "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
@@ -439,14 +448,5 @@
     "title": "sync commits",
     "description": "",
     "tag": "setup"
-  },
-  {
-    "sha": "143520c",
-    "author": "mikedevv",
-    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
-    "date": "2026-07-02",
-    "title": "update home route to root, fix nav links, improve home layout",
-    "description": "",
-    "tag": "fix"
   }
 ]

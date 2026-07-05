@@ -6,9 +6,14 @@
 -- Uses Supabase Realtime BROADCAST (not Postgres Changes) for
 -- challenge/move sync — no publication/replication setup needed,
 -- it's all triggers + private, authorized channels below.
+--
+-- Idempotent — safe to re-run.
 -- ============================================================
 
--- ---------- profiles ----------
+-- ----------------------------------------
+-- Tables & Constraints
+-- ----------------------------------------
+
 create table if not exists public.profiles (
   id uuid primary key references auth.users (id) on delete cascade,
   username text not null unique,
@@ -20,22 +25,24 @@ create table if not exists public.profiles (
 
 alter table public.profiles enable row level security;
 
+drop policy if exists "profiles are readable by any authenticated user" on public.profiles;
 create policy "profiles are readable by any authenticated user"
   on public.profiles for select
   to authenticated
   using (true);
 
+drop policy if exists "users can insert their own profile" on public.profiles;
 create policy "users can insert their own profile"
   on public.profiles for insert
   to authenticated
   with check (auth.uid() = id);
 
+drop policy if exists "users can update their own profile" on public.profiles;
 create policy "users can update their own profile"
   on public.profiles for update
   to authenticated
   using (auth.uid() = id);
 
--- ---------- matches ----------
 create table if not exists public.matches (
   id uuid primary key default gen_random_uuid(),
   player1 uuid not null references public.profiles (id) on delete cascade,
@@ -47,20 +54,22 @@ create table if not exists public.matches (
   created_at timestamptz not null default now(),
   constraint valid_move check (move1 in ('rock','paper','scissors') or move1 is null),
   constraint valid_move2 check (move2 in ('rock','paper','scissors') or move2 is null),
-  constraint valid_status check (status in ('pending','active','completed','declined'))
+  constraint valid_status check (status in ('pending','active','completed','declined')),
+  constraint players_differ check (player1 <> player2)
 );
 
 alter table public.matches enable row level security;
 
+drop policy if exists "players can read their own matches" on public.matches;
 create policy "players can read their own matches"
   on public.matches for select
   to authenticated
   using (auth.uid() = player1 or auth.uid() = player2);
 
--- Inserts/updates are only ever done via the security-definer functions
--- below, so no direct insert/update policy is granted to clients.
+-- ----------------------------------------
+-- Security-Definer Functions
+-- ----------------------------------------
 
--- ---------- create a challenge ----------
 create or replace function public.create_challenge(opponent_id uuid)
 returns uuid
 language plpgsql
@@ -82,7 +91,6 @@ begin
 end;
 $$;
 
--- ---------- respond to a challenge ----------
 create or replace function public.respond_challenge(match_id uuid, accept boolean)
 returns void
 language plpgsql
@@ -102,7 +110,6 @@ begin
 end;
 $$;
 
--- ---------- submit a move & resolve the round ----------
 create or replace function public.submit_move(match_id uuid, my_move text)
 returns void
 language plpgsql
@@ -127,19 +134,24 @@ begin
   end if;
 
   if auth.uid() = m.player1 then
+    if m.move1 is not null then
+      raise exception 'Move already submitted';
+    end if;
     update public.matches set move1 = my_move where id = match_id;
     m.move1 = my_move;
   elsif auth.uid() = m.player2 then
+    if m.move2 is not null then
+      raise exception 'Move already submitted';
+    end if;
     update public.matches set move2 = my_move where id = match_id;
     m.move2 = my_move;
   else
     raise exception 'You are not a player in this match';
   end if;
 
-  -- Only resolve once both moves are in
   if m.move1 is not null and m.move2 is not null then
     if m.move1 = m.move2 then
-      result_winner := null; -- draw
+      result_winner := null;
     elsif (m.move1 = 'rock' and m.move2 = 'scissors')
        or (m.move1 = 'scissors' and m.move2 = 'paper')
        or (m.move1 = 'paper' and m.move2 = 'rock') then
@@ -167,18 +179,29 @@ grant execute on function public.create_challenge(uuid) to authenticated;
 grant execute on function public.respond_challenge(uuid, boolean) to authenticated;
 grant execute on function public.submit_move(uuid, text) to authenticated;
 
--- ============================================================
--- REALTIME — Broadcast
--- Two topic families:
---   'user:<profile_id>'  -> incoming challenges + your own profile updates
---   'match:<match_id>'   -> accept/decline/move sync for one match
--- Both are PRIVATE channels, so Realtime Authorization (RLS on
--- realtime.messages) controls exactly who can subscribe to what.
--- ============================================================
+-- ----------------------------------------
+-- Realtime Broadcast
+-- ----------------------------------------
 
 alter table realtime.messages enable row level security;
 
--- Only the invited/owning user can listen on their own "user:<id>" topic.
+drop policy if exists "any authenticated user can listen to lobby" on realtime.messages;
+create policy "any authenticated user can listen to lobby"
+on realtime.messages
+for select
+to authenticated
+using (
+  realtime.topic() = 'lobby'
+);
+
+drop policy if exists "any authenticated user can join lobby" on realtime.messages;
+create policy "any authenticated user can join lobby"
+on realtime.messages
+for insert
+to authenticated
+with check (realtime.topic() = 'lobby');
+
+drop policy if exists "listen to own user channel" on realtime.messages;
 create policy "listen to own user channel"
 on realtime.messages
 for select
@@ -187,7 +210,7 @@ using (
   realtime.topic() = 'user:' || auth.uid()::text
 );
 
--- Only the two players in a match can listen on its "match:<id>" topic.
+drop policy if exists "listen to own match channel" on realtime.messages;
 create policy "listen to own match channel"
 on realtime.messages
 for select
@@ -201,7 +224,6 @@ using (
   )
 );
 
--- ---------- broadcast a new challenge to the invited player ----------
 create or replace function public.broadcast_new_challenge()
 returns trigger
 security definer
@@ -210,7 +232,7 @@ set search_path = public
 as $$
 begin
   perform realtime.broadcast_changes(
-    'user:' || NEW.player2::text,  -- topic: the invited player's channel
+    'user:' || NEW.player2::text,
     TG_OP, TG_OP, TG_TABLE_NAME, TG_TABLE_SCHEMA,
     NEW, OLD
   );
@@ -218,32 +240,48 @@ begin
 end;
 $$;
 
+drop trigger if exists on_match_created on public.matches;
 create trigger on_match_created
 after insert on public.matches
 for each row execute function public.broadcast_new_challenge();
 
--- ---------- broadcast match updates (accept/decline/move/result) ----------
 create or replace function public.broadcast_match_update()
 returns trigger
 security definer
 language plpgsql
 set search_path = public
 as $$
+declare
+  safe_payload jsonb;
 begin
-  perform realtime.broadcast_changes(
-    'match:' || NEW.id::text,      -- topic: this specific match
-    TG_OP, TG_OP, TG_TABLE_NAME, TG_TABLE_SCHEMA,
-    NEW, OLD
+  safe_payload := to_jsonb(NEW) - 'move1' - 'move2';
+
+  if NEW.status = 'completed' then
+    safe_payload := safe_payload
+      || jsonb_build_object('move1', NEW.move1, 'move2', NEW.move2);
+  else
+    safe_payload := safe_payload
+      || jsonb_build_object(
+           'move1_submitted', NEW.move1 is not null,
+           'move2_submitted', NEW.move2 is not null
+         );
+  end if;
+
+  perform realtime.send(
+    safe_payload,
+    TG_OP,
+    'match:' || NEW.id::text,
+    true
   );
   return NEW;
 end;
 $$;
 
+drop trigger if exists on_match_updated on public.matches;
 create trigger on_match_updated
 after update on public.matches
 for each row execute function public.broadcast_match_update();
 
--- ---------- broadcast profile updates (live win/loss/draw counts) ----------
 create or replace function public.broadcast_profile_update()
 returns trigger
 security definer
@@ -252,7 +290,7 @@ set search_path = public
 as $$
 begin
   perform realtime.broadcast_changes(
-    'user:' || NEW.id::text,       -- topic: that user's own channel
+    'user:' || NEW.id::text,
     TG_OP, TG_OP, TG_TABLE_NAME, TG_TABLE_SCHEMA,
     NEW, OLD
   );
@@ -260,7 +298,7 @@ begin
 end;
 $$;
 
+drop trigger if exists on_profile_updated on public.profiles;
 create trigger on_profile_updated
 after update on public.profiles
 for each row execute function public.broadcast_profile_update();
-

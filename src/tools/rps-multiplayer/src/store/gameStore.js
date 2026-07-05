@@ -24,6 +24,7 @@ function createGameStore() {
   let userChannel;        // private "user:<id>" — incoming challenges + own profile updates
   let matchChannel;       // private "match:<id>" — accept/decline/move sync for the current match
   let matchChannelId = null;
+  const statusOverrides = {}; // userId -> status, broadcast-based overlay on presence data
 
   async function updatePresenceStatus(status) {
     const p = me();
@@ -35,6 +36,11 @@ function createGameStore() {
       losses: p.losses,
       draws: p.draws,
       status,
+    });
+    presenceChannel.send({
+      type: "broadcast",
+      event: "status",
+      payload: { userId: p.id, status },
     });
   }
 
@@ -91,7 +97,7 @@ function createGameStore() {
     matchChannel = supabase
       .channel(`match:${matchId}`, { config: { private: true } })
       .on("broadcast", { event: "UPDATE" }, (message) => {
-        const { new: row } = unwrapBroadcast(message);
+        const row = message.payload;
         if (row) handleMatchRow(row);
       })
       .subscribe();
@@ -116,12 +122,28 @@ function createGameStore() {
     });
 
     presenceChannel
+      .on("broadcast", { event: "status" }, (message) => {
+        const { userId, status } = message.payload;
+        statusOverrides[userId] = status;
+        setOnlineUsers((prev) =>
+          prev.map((u) => (u.id === userId ? { ...u, status } : u))
+        );
+      })
       .on("presence", { event: "sync" }, () => {
         const state = presenceChannel.presenceState();
-        const users = Object.values(state)
-          .map((entries) => entries[0])
-          .filter((u) => u.id !== profile.id);
-        setOnlineUsers(users);
+        const presentIds = new Set(Object.keys(state));
+        for (const id of Object.keys(statusOverrides)) {
+          if (!presentIds.has(id)) delete statusOverrides[id];
+        }
+        setOnlineUsers(
+          Object.values(state)
+            .map((entries) => entries[0])
+            .filter((u) => u.id !== profile.id)
+            .map((u) => ({
+              ...u,
+              status: statusOverrides[u.id] ?? u.status,
+            }))
+        );
       })
       .subscribe(async (status) => {
         if (status === "SUBSCRIBED") {
@@ -133,8 +155,13 @@ function createGameStore() {
             draws: profile.draws,
             status: "available",
           });
-        } else if (status === "CHANNEL_ERROR") {
-          console.error("[rps] Presence subscription failed");
+          presenceChannel.send({
+            type: "broadcast",
+            event: "status",
+            payload: { userId: profile.id, status: "available" },
+          });
+        } else {
+          console.warn("[rps] Lobby presence status:", status);
         }
       });
 

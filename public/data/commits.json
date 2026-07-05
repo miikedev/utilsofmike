@@ -1,5 +1,23 @@
 [
   {
+    "sha": "9a9ec9c",
+    "author": "mikedevv",
+    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
+    "date": "2026-07-05",
+    "title": "handle both old and new broadcast payload formats in match channel",
+    "description": "",
+    "tag": "fix"
+  },
+  {
+    "sha": "a814f0c",
+    "author": "github-actions[bot]",
+    "avatar": "https://avatars.githubusercontent.com/in/15368?v=4",
+    "date": "2026-07-05",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "faf4c55",
     "author": "mikedevv",
     "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
@@ -424,24 +442,6 @@
   },
   {
     "sha": "47091b3",
-    "author": "github-actions",
-    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
-    "date": "2026-07-03",
-    "title": "sync commits",
-    "description": "",
-    "tag": "setup"
-  },
-  {
-    "sha": "702d936",
-    "author": "mikedevv",
-    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
-    "date": "2026-07-03",
-    "title": "switch from amber to stone/grey color palette across the app",
-    "description": "",
-    "tag": "enhancement"
-  },
-  {
-    "sha": "ec600a2",
     "author": "github-actions",
     "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
     "date": "2026-07-03",

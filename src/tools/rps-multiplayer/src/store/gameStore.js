@@ -78,6 +78,7 @@ function createGameStore() {
     if (row.status === "active") {
       if (incomingChallenge()?.id === row.id) setIncomingChallenge(null);
       if (pendingOutgoing()?.id === row.id) setPendingOutgoing(null);
+      console.log("[rps] handleMatchRow active", row.id, "move1:", row.move1, "move2:", row.move2, "move1_submitted:", row.move1_submitted, "move2_submitted:", row.move2_submitted);
       setActiveMatch(row);
       updatePresenceStatus("in_match");
       return;
@@ -85,6 +86,7 @@ function createGameStore() {
     if (row.status === "completed") {
       if (incomingChallenge()?.id === row.id) setIncomingChallenge(null);
       if (pendingOutgoing()?.id === row.id) setPendingOutgoing(null);
+      console.log("[rps] handleMatchRow completed", row.id, "move1:", row.move1, "move2:", row.move2);
       setActiveMatch(row);
     }
   }
@@ -98,7 +100,9 @@ function createGameStore() {
     matchChannel = supabase
       .channel(`match:${matchId}`, { config: { private: true } })
       .on("broadcast", { event: "UPDATE" }, (message) => {
+        console.log("[rps] match broadcast UPDATE received", JSON.stringify(message));
         const row = message.payload?.record ?? message.payload;
+        console.log("[rps] extracted row", JSON.stringify(row));
         if (row) handleMatchRow(row);
       })
       .subscribe();

@@ -8,13 +8,19 @@ const MOVES = [
 ];
 
 export default function GameRoom() {
-  const { me, activeMatch, playMove, leaveMatch, getUsername } = gameStore;
+  const { me, activeMatch, localMove, playMove, leaveMatch, getUsername } = gameStore;
 
   const isPlayer1 = createMemo(() => activeMatch()?.player1 === me()?.id);
-  const myMove = createMemo(() =>
+  const mySubmitted = createMemo(() =>
+    isPlayer1() ? activeMatch()?.move1_submitted : activeMatch()?.move2_submitted
+  );
+  const opponentSubmitted = createMemo(() =>
+    isPlayer1() ? activeMatch()?.move2_submitted : activeMatch()?.move1_submitted
+  );
+  const myActualMove = createMemo(() =>
     isPlayer1() ? activeMatch()?.move1 : activeMatch()?.move2
   );
-  const opponentMove = createMemo(() =>
+  const opponentActualMove = createMemo(() =>
     isPlayer1() ? activeMatch()?.move2 : activeMatch()?.move1
   );
   const opponentId = createMemo(() =>
@@ -29,6 +35,7 @@ export default function GameRoom() {
   });
 
   const iconFor = (moveId) => MOVES.find((m) => m.id === moveId)?.icon ?? "?";
+  const displayMove = isDone() ? myActualMove() : localMove();
 
   return (
     <div class="game-room">
@@ -39,12 +46,12 @@ export default function GameRoom() {
       </div>
 
       <div class="game-room__arena">
-        <div class="game-room__hand game-room__hand--me" classList={{ "game-room__hand--revealed": !!myMove() }}>
-          {myMove() ? iconFor(myMove()) : "?"}
+        <div class="game-room__hand game-room__hand--me" classList={{ "game-room__hand--revealed": !!displayMove }}>
+          {displayMove ? iconFor(displayMove) : "?"}
         </div>
         <div class="game-room__pulse" classList={{ "game-room__pulse--active": !isDone() }} />
         <div class="game-room__hand game-room__hand--opponent" classList={{ "game-room__hand--revealed": isDone() }}>
-          {isDone() ? iconFor(opponentMove()) : opponentMove() ? "✓" : "?"}
+          {isDone() ? iconFor(opponentActualMove()) : opponentSubmitted() ? "✓" : "?"}
         </div>
       </div>
 
@@ -64,7 +71,7 @@ export default function GameRoom() {
         }
       >
         <Show
-          when={!myMove()}
+          when={!mySubmitted()}
           fallback={<p class="game-room__waiting">Waiting for opponent…</p>}
         >
           <div class="game-room__moves">

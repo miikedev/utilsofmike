@@ -19,6 +19,7 @@ function createGameStore() {
   const [incomingChallenge, setIncomingChallenge] = createSignal(null);
   const [activeMatch, setActiveMatch] = createSignal(null);
   const [pendingOutgoing, setPendingOutgoing] = createSignal(null);
+  const [localMove, setLocalMove] = createSignal(null);
 
   let presenceChannel;
   let userChannel;        // private "user:<id>" — incoming challenges + own profile updates
@@ -214,10 +215,12 @@ function createGameStore() {
       my_move: move,
     });
     if (error) throw error;
+    setLocalMove(move);
   }
 
   function leaveMatch() {
     setActiveMatch(null);
+    setLocalMove(null);
     unsubscribeFromMatch();
     updatePresenceStatus("available");
   }
@@ -227,6 +230,7 @@ function createGameStore() {
     onlineUsers,
     incomingChallenge,
     activeMatch,
+    localMove,
     pendingOutgoing, setPendingOutgoing,
     winRate,
     getUsername,

@@ -1,5 +1,23 @@
 [
   {
+    "sha": "81886f0",
+    "author": "mikedevv",
+    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
+    "date": "2026-07-05",
+    "title": "show own move + opponent '✓' with sanitized broadcast payload",
+    "description": "- Store localMove in store after RPC submit succeeds\n- GameRoom uses localMove() to show player's own move immediately\n- Use move1_submitted/move2_submitted booleans from payload for opponent indicator\n- Prevent redundant re-render of move buttons after submission\n- Add wss:// to CSP connect-src for Realtime WebSocket",
+    "tag": "fix"
+  },
+  {
+    "sha": "b90ee3f",
+    "author": "github-actions[bot]",
+    "avatar": "https://avatars.githubusercontent.com/in/15368?v=4",
+    "date": "2026-07-05",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "a88359d",
     "author": "mikedevv",
     "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
@@ -424,24 +442,6 @@
   },
   {
     "sha": "b9e364b",
-    "author": "github-actions",
-    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
-    "date": "2026-07-02",
-    "title": "sync commits",
-    "description": "",
-    "tag": "setup"
-  },
-  {
-    "sha": "7766a8a",
-    "author": "github-actions",
-    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
-    "date": "2026-07-02",
-    "title": "sync commits",
-    "description": "",
-    "tag": "setup"
-  },
-  {
-    "sha": "04a5085",
     "author": "github-actions",
     "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
     "date": "2026-07-02",

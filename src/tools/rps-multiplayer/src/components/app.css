@@ -337,7 +337,7 @@
   font-size: 12px;
   color: var(--ink-soft);
 }
-.winrate-badge__name { font-weight: 700; color: #000; font-size: 13px; }
+.winrate-badge__name { font-weight: 700; color: var(--ink); font-size: 13px; }
 .winrate-badge__stat { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--stamp); }
 .winrate-badge__stat small { color: var(--ink-soft); font-weight: 400; }
 .winrate-badge__record { font-size: 11px; }

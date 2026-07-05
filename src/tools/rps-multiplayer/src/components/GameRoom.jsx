@@ -35,7 +35,7 @@ export default function GameRoom() {
   });
 
   const iconFor = (moveId) => MOVES.find((m) => m.id === moveId)?.icon ?? "?";
-  const displayMove = isDone() ? myActualMove() : localMove();
+  const displayMove = createMemo(() => isDone() ? myActualMove() : localMove());
 
   return (
     <div class="game-room">

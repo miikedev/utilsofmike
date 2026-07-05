@@ -1,5 +1,23 @@
 [
   {
+    "sha": "1f83a13",
+    "author": "mikedevv",
+    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
+    "date": "2026-07-05",
+    "title": "add console.logs for match broadcast payload inspection",
+    "description": "",
+    "tag": "enhancement"
+  },
+  {
+    "sha": "432382a",
+    "author": "github-actions[bot]",
+    "avatar": "https://avatars.githubusercontent.com/in/15368?v=4",
+    "date": "2026-07-05",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "9a9ec9c",
     "author": "mikedevv",
     "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
@@ -424,24 +442,6 @@
   },
   {
     "sha": "113225c",
-    "author": "github-actions",
-    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
-    "date": "2026-07-03",
-    "title": "sync commits",
-    "description": "",
-    "tag": "setup"
-  },
-  {
-    "sha": "6c65472",
-    "author": "mikedevv",
-    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
-    "date": "2026-07-03",
-    "title": "add Rock Paper Scissors multiplayer with Supabase Realtime",
-    "description": "",
-    "tag": "feature"
-  },
-  {
-    "sha": "47091b3",
     "author": "github-actions",
     "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
     "date": "2026-07-03",

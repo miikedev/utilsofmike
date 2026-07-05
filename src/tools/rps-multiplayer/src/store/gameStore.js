@@ -98,7 +98,7 @@ function createGameStore() {
     matchChannel = supabase
       .channel(`match:${matchId}`, { config: { private: true } })
       .on("broadcast", { event: "UPDATE" }, (message) => {
-        const row = message.payload;
+        const row = message.payload?.record ?? message.payload;
         if (row) handleMatchRow(row);
       })
       .subscribe();

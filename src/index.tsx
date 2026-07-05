@@ -35,7 +35,7 @@ render(() => (
       <Route path="/weather" component={WeatherTool} />
     </Route>
     <Route path="/news" component={News} />
-    <Route path="/development" component={Development} />
+    {/* <Route path="/development" component={Development} /> */}
     <Route path="/about" component={About} />
   </Router>
 ), root!);

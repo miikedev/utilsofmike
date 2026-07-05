@@ -25,6 +25,19 @@ function createGameStore() {
   let matchChannel;       // private "match:<id>" — accept/decline/move sync for the current match
   let matchChannelId = null;
 
+  async function updatePresenceStatus(status) {
+    const p = me();
+    if (!presenceChannel || !p) return;
+    await presenceChannel.track({
+      id: p.id,
+      username: p.username,
+      wins: p.wins,
+      losses: p.losses,
+      draws: p.draws,
+      status,
+    });
+  }
+
   function getUsername(id) {
     if (id === me()?.id) return me()?.username ?? "You";
     const found = onlineUsers().find((u) => u.id === id);
@@ -55,7 +68,14 @@ function createGameStore() {
       if (incomingChallenge()?.id === row.id) setIncomingChallenge(null);
       return;
     }
-    if (row.status === "active" || row.status === "completed") {
+    if (row.status === "active") {
+      if (incomingChallenge()?.id === row.id) setIncomingChallenge(null);
+      if (pendingOutgoing()?.id === row.id) setPendingOutgoing(null);
+      setActiveMatch(row);
+      updatePresenceStatus("in_match");
+      return;
+    }
+    if (row.status === "completed") {
       if (incomingChallenge()?.id === row.id) setIncomingChallenge(null);
       if (pendingOutgoing()?.id === row.id) setPendingOutgoing(null);
       setActiveMatch(row);
@@ -111,6 +131,7 @@ function createGameStore() {
             wins: profile.wins,
             losses: profile.losses,
             draws: profile.draws,
+            status: "available",
           });
         } else if (status === "CHANNEL_ERROR") {
           console.error("[rps] Presence subscription failed");
@@ -171,6 +192,7 @@ function createGameStore() {
   function leaveMatch() {
     setActiveMatch(null);
     unsubscribeFromMatch();
+    updatePresenceStatus("available");
   }
 
   return {

@@ -18,24 +18,32 @@ export default function OnlineList() {
       >
         <ul class="online-list__items">
           <For each={onlineUsers()}>
-            {(user) => (
-              <li class="online-list__item">
-                <div class="online-list__user">
-                  <span class="online-list__avatar">{user.username[0]}</span>
-                  <div>
-                    <div class="online-list__name">{user.username}</div>
-                    <div class="online-list__winrate">{winRate(user)}% win rate</div>
+            {(user) => {
+              const inMatch = user.status === "in_match";
+              return (
+                <li class="online-list__item">
+                  <div class="online-list__user">
+                    <span class="online-list__avatar">{user.username[0]}</span>
+                    <div>
+                      <div class="online-list__name">{user.username}</div>
+                      <Show
+                        when={!inMatch}
+                        fallback={<div class="online-list__status">In match</div>}
+                      >
+                        <div class="online-list__winrate">{winRate(user)}% win rate</div>
+                      </Show>
+                    </div>
                   </div>
-                </div>
-                <button
-                  class="online-list__challenge-btn"
-                  disabled={!!pendingOutgoing()}
-                  onClick={() => sendChallenge(user.id)}
-                >
-                  Challenge
-                </button>
-              </li>
-            )}
+                  <button
+                    class="online-list__challenge-btn"
+                    disabled={inMatch || !!pendingOutgoing()}
+                    onClick={() => sendChallenge(user.id)}
+                  >
+                    {inMatch ? "In match" : "Challenge"}
+                  </button>
+                </li>
+              );
+            }}
           </For>
         </ul>
       </Show>

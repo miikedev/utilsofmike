@@ -1,5 +1,50 @@
 [
   {
+    "sha": "17b9d17",
+    "author": "mikedevv",
+    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
+    "date": "2026-07-05",
+    "title": "remove persist-credentials:false so git push can authenticate with GITHUB_TOKEN",
+    "description": "",
+    "tag": "fix"
+  },
+  {
+    "sha": "efba099",
+    "author": "mikedevv",
+    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
+    "date": "2026-07-05",
+    "title": "use theme variable for winrate username color instead of hardcoded black",
+    "description": "Also adds CODE_EXPLANATION.md with developer documentation for the RPS design system.",
+    "tag": "fix"
+  },
+  {
+    "sha": "e8d479c",
+    "author": "mikedevv",
+    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
+    "date": "2026-07-05",
+    "title": "realtime lobby presence status with broadcast fallback",
+    "description": "- Revert private:true on lobby channel (public channel sufficient for presence)\n- Add broadcast side-channel for realtime status propagation (in_match/available)\n- Apply status overrides on top of presence sync data\n- Refactor schema.sql into domain files (tables, functions, realtime)\n- Add DROP TRIGGER IF EXISTS guards for idempotent re-runs\n- Fix broadcast_match_update() to use realtime.send() with sanitized payload\n- Add INSERT+SELECT RLS policies for lobby channel",
+    "tag": "fix"
+  },
+  {
+    "sha": "d1f8f37",
+    "author": "mikedevv",
+    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
+    "date": "2026-07-05",
+    "title": "add CSP headers, pre-commit hook, migrate inline styles, fix workflow permissions",
+    "description": "- Add security headers (CSP, HSTS, X-Frame-Options) to vercel.json\n- Add pre-commit hook blocking .env file commits\n- Move inline styles from about-illustration.tsx to index.css\n- Restrict sync-commits workflow permissions and fix commit author\n- Remove hourly cron from sync-commits (push-only)\n- Add in-match presence status for RPS multiplayer\n- Delete .env.local with leaked VERCEL_OIDC_TOKEN\n- Create .env.example for developer onboarding",
+    "tag": "enhancement"
+  },
+  {
+    "sha": "005c8d0",
+    "author": "github-actions",
+    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
+    "date": "2026-07-05",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "5432b9b",
     "author": "github-actions",
     "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
@@ -397,51 +442,6 @@
   },
   {
     "sha": "2cc062a",
-    "author": "github-actions",
-    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
-    "date": "2026-07-02",
-    "title": "sync commits",
-    "description": "",
-    "tag": "setup"
-  },
-  {
-    "sha": "27e2504",
-    "author": "github-actions",
-    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
-    "date": "2026-07-02",
-    "title": "sync commits",
-    "description": "",
-    "tag": "setup"
-  },
-  {
-    "sha": "4d0e500",
-    "author": "mikedevv",
-    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
-    "date": "2026-07-02",
-    "title": "remove light theme, always use dark color scheme",
-    "description": "",
-    "tag": "enhancement"
-  },
-  {
-    "sha": "33480eb",
-    "author": "github-actions",
-    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
-    "date": "2026-07-02",
-    "title": "sync commits",
-    "description": "",
-    "tag": "setup"
-  },
-  {
-    "sha": "15330fd",
-    "author": "mikedevv",
-    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
-    "date": "2026-07-02",
-    "title": "switch home page colors from amber to stone/grey palette",
-    "description": "",
-    "tag": "enhancement"
-  },
-  {
-    "sha": "83967ca",
     "author": "github-actions",
     "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
     "date": "2026-07-02",

@@ -1,0 +1,425 @@
+/* ============================================================
+   Rock · Paper · Scissors — minimalist "paper & stamp" theme
+   Lightweight CSS-only animation, no animation libraries.
+   ============================================================ */
+
+:root {
+  --paper: #f7f5ef;
+  --paper-raised: #ffffff;
+  --ink: #1c1c1a;
+  --ink-soft: #6f6b60;
+  --line: #e4e0d5;
+  --stamp: #c1443b;
+  --stamp-soft: #f1d9d6;
+  --win: #4c7a5c;
+  --lose: #c1443b;
+  --draw: #8a8578;
+  --radius: 14px;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+.app {
+  min-height: auto;
+  /* background: var(--paper); */
+  border-radius: 4%;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px 60px;
+}
+
+.app__header {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+}
+
+.app__main {
+  width: 100%;
+  max-width: 420px;
+}
+
+.app__waiting {
+  text-align: center;
+  color: var(--ink-soft);
+  padding: 40px 0;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 14px;
+}
+
+/* ---------- Register ---------- */
+.register {
+  max-width: 380px;
+  margin: 12vh auto 0;
+  text-align: center;
+}
+
+.register__title {
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 6px;
+}
+
+.register__sub {
+  color: var(--ink-soft);
+  font-size: 14px;
+  margin: 0 0 28px;
+}
+
+.register__name-card {
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  animation: stamp-in 0.32s ease-out;
+}
+
+.register__name {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.register__reroll {
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--ink-soft);
+  transition: transform 0.2s ease;
+}
+.register__reroll:hover { transform: rotate(180deg); color: var(--ink); }
+
+.register__error {
+  color: var(--stamp);
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.register__enter {
+  margin-top: 20px;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+.register__enter:hover { opacity: 0.85; }
+.register__enter:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ---------- Online list ---------- */
+.online-list__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  color: var(--line)
+}
+.online-list__header h2 {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+}
+.online-list__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--win);
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+.online-list__count {
+  margin-left: auto;
+  font-family: "IBM Plex Mono", monospace;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+.online-list__empty {
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+.online-list__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.online-list__item {
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation: rise-in 0.25s ease-out both;
+}
+.online-list__user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.online-list__avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--stamp-soft);
+  color: var(--stamp);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+.online-list__name { font-size: 14px; font-weight: 600; }
+.online-list__winrate { font-size: 12px; color: var(--ink-soft); }
+.online-list__challenge-btn {
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.online-list__challenge-btn:hover:not(:disabled) {
+  background: var(--ink);
+  color: var(--paper);
+}
+.online-list__challenge-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.online-list__status {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  font-family: "IBM Plex Mono", monospace;
+  padding: 6px 14px;
+}
+
+/* ---------- Challenge toast ---------- */
+.challenge-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  translate: -50% 0;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 14px 18px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  animation: toast-up 0.35s cubic-bezier(0.21, 1.02, 0.73, 1);
+  z-index: 50;
+  max-width: calc(100vw - 32px);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.challenge-toast p { margin: 0; font-size: 14px; }
+.challenge-toast__actions { display: flex; gap: 8px; }
+.challenge-toast__accept, .challenge-toast__decline {
+  border: none;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.challenge-toast__accept { background: var(--win); color: #fff; }
+.challenge-toast__decline { background: rgba(255,255,255,0.15); color: var(--paper); }
+.challenge-toast__accept:disabled,
+.challenge-toast__decline:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ---------- Game room ---------- */
+.game-room { text-align: center; padding-top: 12px; }
+.game-room__vs {
+  display: flex;
+  justify-content: space-between;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+}
+.game-room__vs-label { color: var(--line); font-weight: 700; }
+
+.game-room__arena {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 32px;
+  min-height: 100px;
+}
+.game-room__hand {
+  font-size: 48px;
+  opacity: 0.3;
+  transform: scale(0.85);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.game-room__hand--revealed {
+  opacity: 1;
+  transform: scale(1);
+  animation: stamp-in 0.3s ease-out;
+}
+.game-room__pulse {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid var(--stamp-soft);
+  opacity: 0;
+}
+.game-room__pulse--active {
+  animation: pulse-ring 1.6s ease-out infinite;
+}
+
+.game-room__moves {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+.game-room__move-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--paper-raised);
+  font-size: 26px;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+  
+}
+.game-room__move-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  border-color: var(--stamp);
+}
+.game-room__move-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.game-room__waiting {
+  color: var(--ink-soft);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 14px;
+}
+
+.game-room__result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: rise-in 0.25s ease-out both;
+}
+
+.game-room__result-text {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 16px;
+}
+.game-room__result-text[data-outcome="win"] { color: var(--win); }
+.game-room__result-text[data-outcome="lose"] { color: var(--lose); }
+.game-room__result-text[data-outcome="draw"] { color: var(--draw); }
+
+.game-room__leave {
+  border: 1px solid var(--paper-raised);
+  background: transparent;
+  border-radius: 999px;
+  padding: 8px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--paper)
+}
+.game-room__leave:hover { background: var(--ink); color: var(--paper); }
+
+/* ---------- Win rate badge ---------- */
+.winrate-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+.winrate-badge__name { font-weight: 600; color: var(--line); font-size: 13px; }
+.winrate-badge__stat { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--stamp); }
+.winrate-badge__stat small { color: var(--ink-soft); font-weight: 400; }
+.winrate-badge__record { font-size: 11px; }
+
+/* ---------- Error banner ---------- */
+.app__error-banner {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--stamp);
+  color: #fff;
+  padding: 10px 12px 10px 16px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: calc(100vw - 32px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  animation: rise-in 0.2s ease-out;
+  z-index: 60;
+  font-size: 13px;
+}
+.app__error-dismiss {
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.85;
+}
+.app__error-dismiss:hover { opacity: 1; }
+
+/* ---------- Accessibility: visible keyboard focus ---------- */
+button:focus-visible {
+  outline: 2px solid var(--stamp);
+  outline-offset: 2px;
+}
+
+/* ---------- Keyframes (lightweight, transform/opacity only) ---------- */
+@keyframes stamp-in {
+  from { opacity: 0; transform: scale(1.15) rotate(-3deg); }
+  to { opacity: 1; transform: scale(1) rotate(0); }
+}
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes toast-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.7); opacity: 0.6; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

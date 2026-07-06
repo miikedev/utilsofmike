@@ -1,5 +1,23 @@
 [
   {
+    "sha": "5f1d3ed",
+    "author": "mikedevv",
+    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
+    "date": "2026-07-06",
+    "title": "prevent OnlineList remount on challenge state changes",
+    "description": "",
+    "tag": "fix"
+  },
+  {
+    "sha": "45cad6e",
+    "author": "github-actions[bot]",
+    "avatar": "https://avatars.githubusercontent.com/in/15368?v=4",
+    "date": "2026-07-06",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "eb224a0",
     "author": "mikedevv",
     "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
@@ -428,24 +446,6 @@
     "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
     "date": "2026-07-03",
     "title": "improve button contrast",
-    "description": "",
-    "tag": "enhancement"
-  },
-  {
-    "sha": "2ad9688",
-    "author": "github-actions",
-    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
-    "date": "2026-07-03",
-    "title": "sync commits",
-    "description": "",
-    "tag": "setup"
-  },
-  {
-    "sha": "3f5f943",
-    "author": "mikedevv",
-    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
-    "date": "2026-07-03",
-    "title": "lighter back-to-lobby button with dark text",
     "description": "",
     "tag": "enhancement"
   }

@@ -11,6 +11,7 @@ import "./app.css";
 export default function App() {
   const [ready, setReady] = createSignal(false);
   const { me, activeMatch, pendingOutgoing, connect, disconnect, getUsername } = gameStore;
+  const matchDone = () => activeMatch()?.status === "completed";
 
   onMount(async () => {
     const existing = await getMyProfile().catch(() => null);
@@ -30,7 +31,7 @@ export default function App() {
   return (
     <div class="app">
       <Show when={ready() && me()} fallback={<Register onReady={handleReady} />}>
-        <header class="app__header">
+        <header class="app__header" classList={{ "game-room__hidden": matchDone() }}>
           <WinRateBadge />
         </header>
 

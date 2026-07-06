@@ -214,12 +214,12 @@ function createGameStore() {
   }
 
   async function playMove(matchId, move) {
+    setLocalMove(move);
     const { error } = await supabase.rpc("submit_move", {
       match_id: matchId,
       my_move: move,
     });
     if (error) throw error;
-    setLocalMove(move);
   }
 
   function leaveMatch() {

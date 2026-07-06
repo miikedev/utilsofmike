@@ -22,7 +22,6 @@
 
 .app {
   min-height: 100vh;
-  /* background: var(--paper); */
   color: var(--ink);
   display: flex;
   flex-direction: column;
@@ -187,12 +186,12 @@
   font-weight: 700;
   font-size: 14px;
 }
-.online-list__name { font-size: 14px; font-weight: 700; color: #000; }
+.online-list__name { font-size: 14px; font-weight: 700; color: var(--ink); }
 .online-list__winrate { font-size: 12px; color: var(--ink-soft); }
 .online-list__challenge-btn {
-  border: 2px solid #000;
+  border: 2px solid var(--ink);
   background: transparent;
-  color: #000;
+  color: var(--ink);
   border-radius: 999px;
   padding: 6px 14px;
   font-size: 13px;
@@ -238,47 +237,13 @@
 .challenge-toast__decline { background: rgba(255,255,255,0.15); color: var(--paper); }
 
 /* ---------- Game room ---------- */
-.game-room { text-align: center; padding-top: 12px; }
-.game-room__vs {
-  display: flex;
-  justify-content: space-between;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 13px;
-  color: var(--ink-soft);
-  margin-bottom: 24px;
-}
-.game-room__vs-label { color: var(--stamp); font-weight: 700; }
+.game-room { text-align: center; padding-top: 20px; }
 
-.game-room__arena {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  margin-bottom: 32px;
-  min-height: 100px;
-}
-.game-room__hand {
-  font-size: 48px;
-  opacity: 0.3;
-  transform: scale(0.85);
-  transition: transform 0.25s ease, opacity 0.25s ease;
-}
-.game-room__hand--revealed {
-  opacity: 1;
-  transform: scale(1);
-  animation: stamp-in 0.3s ease-out;
-}
-.game-room__pulse {
-  position: absolute;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  border: 2px solid var(--stamp-soft);
-  opacity: 0;
-}
-.game-room__pulse--active {
-  animation: pulse-ring 1.6s ease-out infinite;
+.game-room__hidden { display: none; }
+.game-room__pick-label {
+  color: var(--ink-soft);
+  font-size: 14px;
+  margin-bottom: 20px;
 }
 
 .game-room__moves {
@@ -301,33 +266,78 @@
   border-color: var(--stamp);
 }
 
+.game-room__waiting-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 0;
+}
+.game-room__hand {
+  font-size: 56px;
+  animation: stamp-in 0.3s ease-out;
+}
+.game-room__hand--opponent {
+  opacity: 0.5;
+  animation: pulse-text 1.4s ease-in-out infinite;
+}
+
 .game-room__waiting {
   color: var(--ink-soft);
   font-family: "IBM Plex Mono", monospace;
   font-size: 14px;
+  animation: pulse-text 1.6s ease-in-out infinite;
+  margin: 8px 0 0;
 }
 
+.game-room__result {
+  padding: 40px 0;
+}
+.game-room__result-moves {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.game-room__result-icon {
+  font-size: 40px;
+}
+.game-room__result-vs {
+  font-weight: 700;
+  color: var(--stamp);
+  font-size: 11px;
+}
 .game-room__result-text {
   font-family: "Space Grotesk", sans-serif;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
-  margin: 0 0 16px;
+  margin: 0 0 24px;
+  animation: stamp-in 0.3s ease-out;
 }
 .game-room__result-text[data-outcome="win"] { color: var(--win); }
 .game-room__result-text[data-outcome="lose"] { color: var(--lose); }
 .game-room__result-text[data-outcome="draw"] { color: var(--draw); }
 
 .game-room__leave {
-  border: 1px solid var(--paper);
-  background: rgba(0, 0, 0, 0.08);
-  color: var(--paper);
+  border: 2px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
   border-radius: 999px;
-  padding: 8px 20px;
+  padding: 10px 28px;
   font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
 }
-
-/* .game-room__leave:hover { background: var(--ink); color: var(--ink)} */
+.game-room__leave:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
 
 /* ---------- Win rate badge ---------- */
 .winrate-badge {
@@ -355,11 +365,10 @@
   0%, 100% { opacity: 1; }
   50% { opacity: 0.4; }
 }
-@keyframes pulse-ring {
-  0% { transform: scale(0.7); opacity: 0.6; }
-  100% { transform: scale(1.4); opacity: 0; }
+@keyframes pulse-text {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
-
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }

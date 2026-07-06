@@ -213,6 +213,9 @@
   font-family: "IBM Plex Mono", monospace;
   padding: 6px 14px;
 }
+.online-list__body--hidden { display: none; }
+.online-list__waiting { display: none; }
+.online-list__waiting--visible { display: block; }
 
 /* ---------- Challenge toast ---------- */
 .challenge-toast {

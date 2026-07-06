@@ -39,16 +39,7 @@ export default function App() {
             when={!activeMatch()}
             fallback={<GameRoom />}
           >
-            <Show
-              when={!pendingOutgoing()}
-              fallback={
-                <p class="app__waiting">
-                  Waiting for {getUsername(pendingOutgoing()?.player2)} to respond…
-                </p>
-              }
-            >
-              <OnlineList />
-            </Show>
+            <OnlineList />
           </Show>
         </main>
 

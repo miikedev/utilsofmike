@@ -204,6 +204,9 @@
   color: var(--paper);
 }
 .online-list__challenge-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.online-list__body--hidden { display: none; }
+.online-list__waiting { display: none; }
+.online-list__waiting--visible { display: block; }
 
 /* ---------- Challenge toast ---------- */
 .challenge-toast {

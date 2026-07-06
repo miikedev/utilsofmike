@@ -1,5 +1,23 @@
 [
   {
+    "sha": "91fe968",
+    "author": "mikedevv",
+    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
+    "date": "2026-07-06",
+    "title": "responsive name row above emotes, preserve moves on match completion, hide header during match",
+    "description": "",
+    "tag": "fix"
+  },
+  {
+    "sha": "d515360",
+    "author": "github-actions[bot]",
+    "avatar": "https://avatars.githubusercontent.com/in/15368?v=4",
+    "date": "2026-07-06",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "e73052c",
     "author": "mikedevv",
     "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
@@ -430,23 +448,5 @@
     "title": "improve RPS multiplayer UI contrast and fix Realtime WebSocket connection",
     "description": "",
     "tag": "fix"
-  },
-  {
-    "sha": "09d3491",
-    "author": "github-actions",
-    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
-    "date": "2026-07-03",
-    "title": "sync commits",
-    "description": "",
-    "tag": "setup"
-  },
-  {
-    "sha": "40af6de",
-    "author": "github-actions",
-    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
-    "date": "2026-07-03",
-    "title": "sync commits",
-    "description": "",
-    "tag": "setup"
   }
 ]

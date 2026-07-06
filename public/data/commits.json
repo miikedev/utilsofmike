@@ -1,5 +1,23 @@
 [
   {
+    "sha": "eb224a0",
+    "author": "mikedevv",
+    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
+    "date": "2026-07-06",
+    "title": "sync status on match completion, fix challenge toast button state, animate toast entry",
+    "description": "",
+    "tag": "fix"
+  },
+  {
+    "sha": "364339d",
+    "author": "github-actions[bot]",
+    "avatar": "https://avatars.githubusercontent.com/in/15368?v=4",
+    "date": "2026-07-06",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "91fe968",
     "author": "mikedevv",
     "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
@@ -430,23 +448,5 @@
     "title": "lighter back-to-lobby button with dark text",
     "description": "",
     "tag": "enhancement"
-  },
-  {
-    "sha": "c30f68d",
-    "author": "github-actions",
-    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
-    "date": "2026-07-03",
-    "title": "sync commits",
-    "description": "",
-    "tag": "setup"
-  },
-  {
-    "sha": "a39df1e",
-    "author": "mikedevv",
-    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
-    "date": "2026-07-03",
-    "title": "improve RPS multiplayer UI contrast and fix Realtime WebSocket connection",
-    "description": "",
-    "tag": "fix"
   }
 ]

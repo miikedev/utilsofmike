@@ -31,6 +31,21 @@ function sameMatch(a, b) {
   );
 }
 
+function sameUsers(a, b) {
+  if (a === b) return true;
+  if (!a || !b) return false;
+  if (a.length !== b.length) return false;
+  return a.every((u, i) => {
+    const o = b[i];
+    return u.id === o.id &&
+      u.username === o.username &&
+      u.wins === o.wins &&
+      u.losses === o.losses &&
+      u.draws === o.draws &&
+      u.status === o.status;
+  });
+}
+
 function sameProfile(a, b) {
   if (a === b) return true;
   if (!a || !b) return false;
@@ -45,21 +60,19 @@ function sameProfile(a, b) {
 
 function createGameStore() {
   const [me, setMe] = createSignal(null, { equals: sameProfile }); // profile row
-  const [onlineUsers, setOnlineUsers] = createSignal([]); // presence, unrelated to Broadcast
+  const [onlineUsers, setOnlineUsers] = createSignal([], { equals: sameUsers }); // presence, unrelated to Broadcast
   const [incomingChallenge, setIncomingChallenge] = createSignal(null, { equals: sameMatch });
   const [activeMatch, setActiveMatch] = createSignal(null, { equals: sameMatch });
   const [pendingOutgoing, setPendingOutgoing] = createSignal(null, { equals: sameMatch });
   const [lastError, setLastError] = createSignal(null);
   const [presenceReady, setPresenceReady] = createSignal(false);
 
-  // Whether *I* currently look "busy" to everyone else in the lobby — in an
-  // active match, or in the middle of a not-yet-resolved challenge either
-  // direction. A completed match no longer counts so the player is immediately
-  // available for the next round.
+  // Whether *I* currently look "busy" to everyone else in the lobby.
+  // Only an active (in-progress) match counts — pending challenges don't
+  // change the status so the OnlineList stays stable until both accept.
   const myStatus = createMemo(() => {
     const match = activeMatch();
-    const busy = !!((match && match.status !== "completed") || pendingOutgoing() || incomingChallenge());
-    return busy ? "in_match" : "available";
+    return (match && match.status !== "completed") ? "in_match" : "available";
   });
 
   let presenceChannel;
@@ -167,9 +180,12 @@ function createGameStore() {
       .on("broadcast", { event: "status" }, (message) => {
         const { userId, status } = message.payload;
         statusOverrides[userId] = status;
-        setOnlineUsers((prev) =>
-          prev.map((u) => (u.id === userId ? { ...u, status } : u))
-        );
+        setOnlineUsers((prev) => {
+          const next = prev.map((u) =>
+            u.id === userId ? { ...u, status } : u
+          );
+          return sameUsers(prev, next) ? prev : next;
+        });
       })
       .on("presence", { event: "sync" }, () => {
         const state = presenceChannel.presenceState();
@@ -177,15 +193,20 @@ function createGameStore() {
         for (const id of Object.keys(statusOverrides)) {
           if (!presentIds.has(id)) delete statusOverrides[id];
         }
-        setOnlineUsers(
-          Object.values(state)
-            .map((entries) => entries[entries.length - 1]) // most recent tab/tracked payload wins
+        setOnlineUsers((prev) => {
+          const next = Object.values(state)
+            .map((entries) => entries[entries.length - 1])
             .filter((u) => u.id !== profile.id)
-            .map((u) => ({
-              ...u,
-              status: statusOverrides[u.id] ?? "available",
-            }))
-        );
+            .map((u) => {
+              const cached = prev.find((p) => p.id === u.id);
+              const status = statusOverrides[u.id] ?? "available";
+              if (cached && cached.username === u.username && cached.wins === u.wins && cached.losses === u.losses && cached.draws === u.draws && cached.status === status) {
+                return cached;
+              }
+              return { ...u, status };
+            });
+          return sameUsers(prev, next) ? prev : next;
+        });
       })
       .subscribe(async (status) => {
         if (status === "SUBSCRIBED") {

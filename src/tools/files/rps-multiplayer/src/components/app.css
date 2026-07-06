@@ -44,6 +44,8 @@
   max-width: 420px;
 }
 
+.app__lobby--hidden { display: none; }
+
 .app__waiting {
   text-align: center;
   color: var(--ink-soft);

@@ -38,10 +38,7 @@ export default function App() {
         </header>
 
         <main class="app__main">
-          <Show
-            when={!activeMatch()}
-            fallback={<GameRoom />}
-          >
+          <div class="app__lobby" classList={{ "app__lobby--hidden": !!activeMatch() }}>
             <Show
               when={!pendingOutgoing()}
               fallback={
@@ -52,6 +49,9 @@ export default function App() {
             >
               <OnlineList />
             </Show>
+          </div>
+          <Show when={!!activeMatch()}>
+            <GameRoom />
           </Show>
         </main>
 

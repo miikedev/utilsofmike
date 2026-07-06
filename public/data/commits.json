@@ -1,5 +1,23 @@
 [
   {
+    "sha": "e73052c",
+    "author": "mikedevv",
+    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
+    "date": "2026-07-06",
+    "title": "simplify game room UX and fix emote display timing",
+    "description": "- Remove arena/vs header, replace with simple 3-state flow: pick → waiting → result\n- Show picked emote immediately (optimistic localMove before RPC)\n- Show pulsing ? for opponent while waiting\n- Fix dark theme compatibility (hardcoded #000 → var(--ink))\n- Remove unused CSS and memos",
+    "tag": "enhancement"
+  },
+  {
+    "sha": "151f4b0",
+    "author": "github-actions[bot]",
+    "avatar": "https://avatars.githubusercontent.com/in/15368?v=4",
+    "date": "2026-07-05",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "1f83a13",
     "author": "mikedevv",
     "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
@@ -424,24 +442,6 @@
   },
   {
     "sha": "40af6de",
-    "author": "github-actions",
-    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
-    "date": "2026-07-03",
-    "title": "sync commits",
-    "description": "",
-    "tag": "setup"
-  },
-  {
-    "sha": "071120a",
-    "author": "github-actions",
-    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
-    "date": "2026-07-03",
-    "title": "sync commits",
-    "description": "",
-    "tag": "setup"
-  },
-  {
-    "sha": "113225c",
     "author": "github-actions",
     "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
     "date": "2026-07-03",

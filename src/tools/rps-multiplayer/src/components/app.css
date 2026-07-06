@@ -266,6 +266,20 @@
   border-color: var(--stamp);
 }
 
+.game-room__arena {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 8px 0;
+}
+.game-room__vs-label {
+  font-weight: 700;
+  color: var(--ink-soft);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
 .game-room__waiting-area {
   display: flex;
   flex-direction: column;
@@ -293,23 +307,29 @@
 .game-room__result {
   padding: 40px 0;
 }
-.game-room__result-moves {
+.game-room__result-names {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto 4px;
   gap: 12px;
-  font-family: "IBM Plex Mono", monospace;
+}
+.game-room__result-name {
+  font-weight: 700;
+  color: var(--ink);
   font-size: 14px;
-  color: var(--ink-soft);
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 45%;
 }
 .game-room__result-icon {
   font-size: 40px;
 }
 .game-room__result-vs {
   font-weight: 700;
-  color: var(--stamp);
+  color: var(--paper);
   font-size: 11px;
 }
 .game-room__result-text {
@@ -334,6 +354,7 @@
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease;
 }
+
 .game-room__leave:hover {
   background: var(--ink);
   color: var(--paper);
@@ -348,7 +369,7 @@
   color: var(--ink-soft);
 }
 .winrate-badge__name { font-weight: 700; color: var(--ink); font-size: 13px; }
-.winrate-badge__stat { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--stamp); }
+.winrate-badge__stat { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--stamp); display: block; }
 .winrate-badge__stat small { color: var(--ink-soft); font-weight: 400; }
 .winrate-badge__record { font-size: 11px; }
 

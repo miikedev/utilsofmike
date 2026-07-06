@@ -10,6 +10,7 @@ import "./app.css";
 
 export default function App() {
   const [ready, setReady] = createSignal(false);
+  const [checking, setChecking] = createSignal(true);
   const { me, activeMatch, pendingOutgoing, lastError, setLastError, connect, disconnect, getUsername } = gameStore;
 
   onMount(async () => {
@@ -18,6 +19,7 @@ export default function App() {
       connect(existing);
       setReady(true);
     }
+    setChecking(false);
   });
 
   onCleanup(() => disconnect());
@@ -29,7 +31,8 @@ export default function App() {
 
   return (
     <div class="app">
-      <Show when={ready() && me()} fallback={<Register onReady={handleReady} />}>
+      <Show when={!checking()}>
+        <Show when={ready() && me()} fallback={<Register onReady={handleReady} />}>
         <header class="app__header">
           <WinRateBadge />
         </header>
@@ -39,7 +42,16 @@ export default function App() {
             when={!activeMatch()}
             fallback={<GameRoom />}
           >
-            <OnlineList />
+            <Show
+              when={!pendingOutgoing()}
+              fallback={
+                <p class="app__waiting">
+                  Waiting for {getUsername(pendingOutgoing()?.player2)} to respond…
+                </p>
+              }
+            >
+              <OnlineList />
+            </Show>
           </Show>
         </main>
 
@@ -57,6 +69,7 @@ export default function App() {
             </button>
           </div>
         </Show>
+      </Show>
       </Show>
     </div>
   );

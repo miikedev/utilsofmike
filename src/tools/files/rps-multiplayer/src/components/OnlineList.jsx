@@ -2,7 +2,7 @@ import { createMemo, createSignal, For, Show } from "solid-js";
 import { gameStore } from "../store/gameStore";
 
 export default function OnlineList() {
-  const { onlineUsers, sendChallenge, winRate, pendingOutgoing, getUsername } = gameStore;
+  const { onlineUsers, sendChallenge, winRate } = gameStore;
   const [sendingTo, setSendingTo] = createSignal(null);
   const count = createMemo(() => onlineUsers().length);
 
@@ -25,19 +25,7 @@ export default function OnlineList() {
         <span class="online-list__count">{count()}</span>
       </div>
 
-      <div
-        class="online-list__waiting"
-        classList={{ "online-list__waiting--visible": !!pendingOutgoing() }}
-      >
-        <p class="app__waiting">
-          Waiting for {getUsername(pendingOutgoing()?.player2)} to respond…
-        </p>
-      </div>
-
-      <div
-        class="online-list__body"
-        classList={{ "online-list__body--hidden": !!pendingOutgoing() }}
-      >
+      <div class="online-list__body">
         <Show
           when={count() > 0}
           fallback={<p class="online-list__empty">No one else is online yet.</p>}
@@ -54,7 +42,7 @@ export default function OnlineList() {
                     </div>
                   </div>
                   <Show
-                    when={!user.inMatch}
+                    when={user.status !== "in_match"}
                     fallback={<span class="online-list__status">In a match</span>}
                   >
                     <button

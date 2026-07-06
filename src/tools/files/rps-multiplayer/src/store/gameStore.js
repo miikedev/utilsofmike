@@ -55,28 +55,18 @@ function createGameStore() {
   // Whether *I* currently look "busy" to everyone else in the lobby — in an
   // active match, or in the middle of a not-yet-resolved challenge either
   // direction. A completed match no longer counts so the player is immediately
-  // available for the next round. Presence re-tracks whenever this flips, so
-  // other players see it live without polling.
-  const amBusy = createMemo(() => {
+  // available for the next round.
+  const myStatus = createMemo(() => {
     const match = activeMatch();
-    return !!((match && match.status !== "completed") || pendingOutgoing() || incomingChallenge());
+    const busy = !!((match && match.status !== "completed") || pendingOutgoing() || incomingChallenge());
+    return busy ? "in_match" : "available";
   });
-
-  function presencePayload(profile, busy) {
-    return {
-      id: profile.id,
-      username: profile.username,
-      wins: profile.wins,
-      losses: profile.losses,
-      draws: profile.draws,
-      inMatch: busy,
-    };
-  }
 
   let presenceChannel;
   let userChannel;        // private "user:<id>" — incoming challenges + own profile updates
   let matchChannel;       // private "match:<id>" — accept/decline/move sync for the current match
   let matchChannelId = null;
+  const statusOverrides = {};
 
   function getUsername(id) {
     if (id === me()?.id) return me()?.username ?? "You";
@@ -120,8 +110,6 @@ function createGameStore() {
     if (row.status === "completed") {
       if (incomingChallenge()?.id === row.id) setIncomingChallenge(null);
       if (pendingOutgoing()?.id === row.id) setPendingOutgoing(null);
-      // Live play: we're already watching this match, update with result.
-      // Reconnect: activeMatch is null, don't re-enter a completed match.
       if (activeMatch()?.id === row.id) {
         setActiveMatch(row);
       } else {
@@ -176,16 +164,38 @@ function createGameStore() {
     });
 
     presenceChannel
+      .on("broadcast", { event: "status" }, (message) => {
+        const { userId, status } = message.payload;
+        statusOverrides[userId] = status;
+        setOnlineUsers((prev) =>
+          prev.map((u) => (u.id === userId ? { ...u, status } : u))
+        );
+      })
       .on("presence", { event: "sync" }, () => {
         const state = presenceChannel.presenceState();
-        const users = Object.values(state)
-          .map((entries) => entries[entries.length - 1]) // most recent tab/tracked payload wins
-          .filter((u) => u.id !== profile.id);
-        setOnlineUsers(users);
+        const presentIds = new Set(Object.keys(state));
+        for (const id of Object.keys(statusOverrides)) {
+          if (!presentIds.has(id)) delete statusOverrides[id];
+        }
+        setOnlineUsers(
+          Object.values(state)
+            .map((entries) => entries[entries.length - 1]) // most recent tab/tracked payload wins
+            .filter((u) => u.id !== profile.id)
+            .map((u) => ({
+              ...u,
+              status: statusOverrides[u.id] ?? "available",
+            }))
+        );
       })
       .subscribe(async (status) => {
         if (status === "SUBSCRIBED") {
-          await presenceChannel.track(presencePayload(profile, amBusy()));
+          await presenceChannel.track({
+            id: profile.id,
+            username: profile.username,
+            wins: profile.wins,
+            losses: profile.losses,
+            draws: profile.draws,
+          });
           setPresenceReady(true);
         }
       });
@@ -219,15 +229,32 @@ function createGameStore() {
   }
 
   // Presence only broadcasts whatever was passed to track() at connect
-  // time, so without this, everyone else's "win rate" (and match status)
-  // in the online list would freeze at whatever it was when they joined.
-  // Re-track whenever our own profile changes OR our busy state flips, so
-  // opponents see live stats and an accurate "in a match" indicator.
+  // time, so without this, everyone else's "win rate" in the online list
+  // would freeze at whatever it was when they joined. Re-track whenever
+  // our own profile changes so opponents see live stats.
   createEffect(() => {
     const profile = me();
-    const busy = amBusy();
     if (!profile || !presenceChannel || !presenceReady()) return;
-    presenceChannel.track(presencePayload(profile, busy));
+    presenceChannel.track({
+      id: profile.id,
+      username: profile.username,
+      wins: profile.wins,
+      losses: profile.losses,
+      draws: profile.draws,
+    });
+  });
+
+  // Broadcast status whenever our busy state flips, so opponents see an
+  // accurate "In match" / "Challenge" indicator without polling.
+  createEffect(() => {
+    const profile = me();
+    const status = myStatus();
+    if (!profile || !presenceChannel || !presenceReady()) return;
+    presenceChannel.send({
+      type: "broadcast",
+      event: "status",
+      payload: { userId: profile.id, status },
+    });
   });
 
   function disconnect() {
@@ -286,9 +313,6 @@ function createGameStore() {
     setPendingOutgoing(null);
     setIncomingChallenge(null);
     unsubscribeFromMatch();
-    if (presenceChannel && presenceReady()) {
-      presenceChannel.track(presencePayload(me(), false));
-    }
   }
 
   return {

@@ -65,6 +65,7 @@
   font-weight: 700;
   letter-spacing: -0.01em;
   margin: 0 0 6px;
+  color: var(--line)
 }
 
 .register__sub {
@@ -213,9 +214,7 @@
   font-family: "IBM Plex Mono", monospace;
   padding: 6px 14px;
 }
-.online-list__body--hidden { display: none; }
-.online-list__waiting { display: none; }
-.online-list__waiting--visible { display: block; }
+
 
 /* ---------- Challenge toast ---------- */
 .challenge-toast {

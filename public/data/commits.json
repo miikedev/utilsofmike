@@ -1,5 +1,23 @@
 [
   {
+    "sha": "9006577",
+    "author": "mikedevv",
+    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
+    "date": "2026-07-06",
+    "title": "broadcast status, lift waiting to App, skip Register flash",
+    "description": "",
+    "tag": "feature"
+  },
+  {
+    "sha": "1160a84",
+    "author": "github-actions[bot]",
+    "avatar": "https://avatars.githubusercontent.com/in/15368?v=4",
+    "date": "2026-07-06",
+    "title": "sync commits",
+    "description": "",
+    "tag": "setup"
+  },
+  {
     "sha": "5f1d3ed",
     "author": "mikedevv",
     "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
@@ -430,23 +448,5 @@
     "title": "sync commits",
     "description": "",
     "tag": "setup"
-  },
-  {
-    "sha": "b3009cc",
-    "author": "github-actions",
-    "avatar": "https://avatars.githubusercontent.com/u/65916846?v=4",
-    "date": "2026-07-03",
-    "title": "sync commits",
-    "description": "",
-    "tag": "setup"
-  },
-  {
-    "sha": "c444357",
-    "author": "mikedevv",
-    "avatar": "https://avatars.githubusercontent.com/u/132486534?v=4",
-    "date": "2026-07-03",
-    "title": "improve button contrast",
-    "description": "",
-    "tag": "enhancement"
   }
 ]
